@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#1A2844"/>
+  <circle cx="200" cy="120" r="50" fill="none" stroke="#3D5580" stroke-width="12" stroke-dasharray="8 6"/>
+  <circle cx="175" cy="100" r="8" fill="#3D5580" opacity="0.5"/>
+  <circle cx="210" cy="110" r="8" fill="#3D5580" opacity="0.5"/>
+  <circle cx="190" cy="140" r="8" fill="#3D5580" opacity="0.5"/>
+  <circle cx="220" cy="130" r="8" fill="#3D5580" opacity="0.5"/>
+  <text x="200" y="120" text-anchor="middle" font-family="sans-serif" font-size="32" fill="#F59E0B" dominant-baseline="middle">🫧</text>
+  <text x="200" y="250" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="600" fill="#C0D0E4">Bubble Wrap</text>
+</svg>

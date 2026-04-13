@@ -2,32 +2,178 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState, useEffect, useCallback } from 'react';
 import ProductCard from '@/components/ProductCard';
+import QuoteForm from '@/components/QuoteForm';
 import { getFeaturedProducts } from '@/data/products';
 import { categories } from '@/data/categories';
 
+/* Parent category groups for homepage display */
+const productGroups = [
+  {
+    name: 'Tapes',
+    icon: '🔖',
+    image: '/images/products-new/opp-tape-transparent.png',
+    subcategories: ['pvc-tapes', 'opp-tapes', 'printed-tape', 'masking-tape', 'cloth-tape', 'kraft-tape'],
+  },
+  {
+    name: 'Stretch Film',
+    icon: '🎞️',
+    image: '/images/products-new/stretch-film.png',
+    subcategories: ['stretch-film', 'bundle-wrap'],
+  },
+  {
+    name: 'Foam & Protection',
+    icon: '🛡️',
+    image: '/images/products-new/pe-foam-roll.png',
+    subcategories: ['pe-foam-rolls', 'laminated-pe-foam-sheets', 'pe-sheet-roll'],
+  },
+  {
+    name: 'Edgeboard',
+    icon: '📐',
+    image: '/images/products-new/edgeboard.png',
+    subcategories: ['edgeboard-protectors'],
+  },
+  {
+    name: 'Air Bubble Pak',
+    icon: '💨',
+    image: '/images/products-new/bubble-wrap.png',
+    subcategories: ['air-bubble-pak'],
+  },
+  {
+    name: 'Strapping',
+    icon: '🔗',
+    image: '/images/products-new/strapping-yellow.png',
+    subcategories: ['strapping-bands'],
+  },
+  {
+    name: 'Packaging Supplies',
+    icon: '📦',
+    image: '/images/products-new/dunnage-airbag.png',
+    subcategories: ['dunnage-air-bags', 'packing-list-envelopes', 'newsprint-paper', 'silica-gel', 'corrugated-paper-roll', 'mic-pac'],
+  },
+];
+
+/* Hero carousel images */
+const heroImages = [
+  { src: '/images/hero/hero-1.png', alt: 'Modern packaging warehouse with pallets and forklift' },
+  { src: '/images/hero/hero-2.png', alt: 'Professional packaging materials - tape, stretch film, bubble wrap' },
+  { src: '/images/hero/hero-3.png', alt: 'Warehouse worker wrapping pallet with stretch film' },
+];
+
+/* Client logos */
+const clientLogos = [
+  { src: '/images/clients/samsung.png', alt: 'Samsung' },
+  { src: '/images/clients/sony.png', alt: 'Sony' },
+  { src: '/images/clients/hewlett-packard.jpg', alt: 'Hewlett Packard' },
+  { src: '/images/clients/maersk.png', alt: 'Maersk' },
+  { src: '/images/clients/dhl.jpg', alt: 'DHL' },
+  { src: '/images/clients/dsv.png', alt: 'DSV' },
+  { src: '/images/clients/ceva-logistics.png', alt: 'CEVA Logistics' },
+  { src: '/images/clients/gxo.png', alt: 'GXO Logistics' },
+  { src: '/images/clients/db-schenker.png', alt: 'DB Schenker' },
+  { src: '/images/clients/kuehne-nagel.png', alt: 'Kuehne + Nagel' },
+  { src: '/images/clients/ups.jpg', alt: 'UPS' },
+  { src: '/images/clients/flex.png', alt: 'Flex' },
+  { src: '/images/clients/courts.png', alt: 'Courts' },
+  { src: '/images/clients/croda.png', alt: 'Croda' },
+  { src: '/images/clients/infineon.png', alt: 'Infineon' },
+  { src: '/images/clients/texas-instruments.png', alt: 'Texas Instruments' },
+  { src: '/images/clients/bollore-logistics.png', alt: 'Bolloré Logistics' },
+  { src: '/images/clients/best-denki.png', alt: 'Best Denki' },
+  { src: '/images/clients/harvey-norman.png', alt: 'Harvey Norman' },
+  { src: '/images/clients/expeditors.png', alt: 'Expeditors' },
+  { src: '/images/clients/nippon-express.png', alt: 'Nippon Express' },
+  { src: '/images/clients/yusen-logistics.png', alt: 'Yusen Logistics' },
+  { src: '/images/clients/toll.png', alt: 'Toll' },
+];
+
 export default function HomePage() {
   const featured = getFeaturedProducts();
+  const [quoteOpen, setQuoteOpen] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const nextSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(nextSlide, 4000);
+    return () => clearInterval(timer);
+  }, [nextSlide]);
 
   return (
     <>
       {/* Hero */}
       <section className="hero">
         <div className="container">
-          <div className="hero-content">
-            <h1>
-              Your Trusted <span>Packaging</span> Supply Partner
-            </h1>
-            <p>
-              Quality tapes, strapping bands, carton boxes, bubble wrap and more — all in one place. Serving businesses across Singapore with fast delivery and competitive wholesale pricing.
-            </p>
-            <div className="hero-cta">
-              <Link href="/category/opp-tapes" className="btn btn-primary btn-lg">
-                Browse Products
-              </Link>
-              <Link href="/account/login" className="btn btn-outline btn-lg" style={{ borderColor: 'rgba(255,255,255,.2)', color: '#fff' }}>
-                Get a Quote
-              </Link>
+          <div className="hero-split">
+            <div className="hero-content">
+              <h1>
+                Your One-Stop <span>Packaging</span> Supplies
+              </h1>
+              <p>
+                Machine, materials, solution for your business. Adhesive tapes, stretch film, foam rolls, bubble wrap, strapping bands and more — all from one reliable manufacturer and distributor.
+              </p>
+              <div className="hero-cta">
+                <Link href="/products" className="btn btn-primary btn-lg">
+                  View Catalogue
+                </Link>
+                <button className="btn btn-lg" style={{ background: 'rgba(255,255,255,.15)', color: '#fff', borderColor: 'rgba(255,255,255,.25)' }} onClick={() => setQuoteOpen(true)}>
+                  Get a Quote
+                </button>
+              </div>
+            </div>
+            <div className="hero-carousel">
+              {heroImages.map((img, index) => (
+                <div
+                  key={img.src}
+                  className={`hero-carousel-slide ${index === currentSlide ? 'active' : ''}`}
+                >
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    width={600}
+                    height={450}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    priority={index === 0}
+                  />
+                </div>
+              ))}
+              <div className="hero-carousel-dots">
+                {heroImages.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`hero-carousel-dot ${index === currentSlide ? 'active' : ''}`}
+                    onClick={() => setCurrentSlide(index)}
+                    aria-label={`Go to slide ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Info Strip — Address & Hours */}
+      <section className="info-strip">
+        <div className="container">
+          <div className="info-strip-items">
+            <div className="info-strip-item">
+              <span className="info-strip-icon">📍</span>
+              <span>11 Gul Link, Singapore 629381</span>
+            </div>
+            <div className="info-strip-item">
+              <span className="info-strip-icon">🕐</span>
+              <span>Mon–Fri 9AM–6PM | Sat 9AM–1PM</span>
+            </div>
+            <div className="info-strip-item">
+              <span className="info-strip-icon">📞</span>
+              <a href="tel:+6590482345">+65 9048 2345</a>
+            </div>
+            <div className="info-strip-item">
+              <span className="info-strip-icon">📧</span>
+              <a href="mailto:sales@megapac.sg">sales@megapac.sg</a>
             </div>
           </div>
         </div>
@@ -38,38 +184,105 @@ export default function HomePage() {
         <div className="container">
           <div className="value-grid">
             <div className="value-item">
-              <div className="value-icon">🚚</div>
-              <h4>Fast Delivery</h4>
-              <p>Island-wide delivery across Singapore. Free for orders above $200.</p>
+              <div className="value-icon">🏭</div>
+              <h4>Manufacturer &amp; Distributor</h4>
+              <p>One of the leading manufacturers and distributors of adhesive tapes, packaging materials and associated machinery.</p>
             </div>
             <div className="value-item">
-              <div className="value-icon">💰</div>
-              <h4>Wholesale Pricing</h4>
-              <p>Competitive rates for bulk orders. The more you buy, the more you save.</p>
+              <div className="value-icon">🚚</div>
+              <h4>Fast Delivery</h4>
+              <p>Island-wide delivery across Singapore &amp; Malaysia. Quick turnaround for urgent orders.</p>
+            </div>
+            <div className="value-item">
+              <div className="value-icon">🔧</div>
+              <h4>Custom Solutions</h4>
+              <p>Printed tapes, custom film sizes, laminated materials — we customise solutions to your exact requirements.</p>
             </div>
             <div className="value-item">
               <div className="value-icon">📦</div>
               <h4>Wide Selection</h4>
-              <p>From tapes to stretch film — everything you need for packaging in one shop.</p>
-            </div>
-            <div className="value-item">
-              <div className="value-icon">✅</div>
-              <h4>Quality Assured</h4>
-              <p>We source only from trusted manufacturers. Every product is quality tested.</p>
+              <p>Packaging materials, machinery tools, ESD/Cleanroom supplies, and construction adhesive — everything your business needs.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Featured Products */}
+      {/* Trusted By — Client Logos */}
+      <section className="client-logos-section">
+        <div className="container">
+          <div className="section-header" style={{ justifyContent: 'center', textAlign: 'center' }}>
+            <div>
+              <h2>Trusted By <span>Industry Leaders</span></h2>
+              <p>We proudly supply packaging solutions to these leading companies</p>
+            </div>
+          </div>
+          <div className="client-logos-marquee">
+            <div className="client-logos-track">
+              {/* Double the logos for seamless infinite scroll */}
+              {[...clientLogos, ...clientLogos].map((logo, index) => (
+                <div key={`${logo.alt}-${index}`} className="client-logo-item">
+                  <Image
+                    src={logo.src}
+                    alt={logo.alt}
+                    width={140}
+                    height={70}
+                    style={{ maxWidth: '120px', maxHeight: '55px', objectFit: 'contain', filter: 'grayscale(100%)', opacity: 0.65, transition: 'all .3s ease' }}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Products — Parent Categories */}
       <section className="section">
         <div className="container">
           <div className="section-header">
             <div>
-              <h2>Featured <span>Products</span></h2>
-              <p>Our most popular packaging supplies, hand-picked for you.</p>
+              <h2>Our <span>Products</span></h2>
+              <p>Browse our full catalogue organised by product type.</p>
             </div>
-            <Link href="/category/opp-tapes" className="btn btn-outline">
+            <Link href="/products" className="btn btn-outline">
+              View All →
+            </Link>
+          </div>
+          <div className="product-group-grid">
+            {productGroups.map((group) => {
+              const groupCats = categories.filter((c) => group.subcategories.includes(c.slug));
+              return (
+                <div key={group.name} className="product-group-card">
+                  <Link href="/products" className="product-group-img">
+                    <Image src={group.image} alt={group.name} width={400} height={300} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
+                    <div className="product-group-overlay">
+                      <h3>{group.name}</h3>
+                    </div>
+                  </Link>
+                  {groupCats.length > 1 && (
+                    <div className="product-group-subs">
+                      {groupCats.map((cat) => (
+                        <Link key={cat.id} href={`/category/${cat.slug}`} className="product-group-sub">
+                          {cat.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Products */}
+      <section className="section-sm" style={{ background: 'var(--gray-50)' }}>
+        <div className="container">
+          <div className="section-header">
+            <div>
+              <h2>Featured <span>Products</span></h2>
+              <p>Our most popular packaging supplies for businesses in Singapore.</p>
+            </div>
+            <Link href="/products" className="btn btn-outline">
               View All →
             </Link>
           </div>
@@ -81,28 +294,53 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Categories */}
-      <section className="section-sm" style={{ background: 'var(--gray-100)' }}>
+      {/* About Us Teaser */}
+      <section className="about-section">
         <div className="container">
-          <div className="section-header">
+          <div className="about-grid">
             <div>
-              <h2>Shop by <span>Category</span></h2>
-              <p>Find exactly what you need from our organised product categories.</p>
-            </div>
-          </div>
-          <div className="category-grid">
-            {categories.map((cat) => (
-              <Link key={cat.id} href={`/category/${cat.slug}`} className="category-card">
-                <Image src={cat.image} alt={cat.name} width={400} height={300} style={{ objectFit: 'cover' }} />
-                <div className="category-card-overlay">
-                  <h3>{cat.name}</h3>
-                  <p>{cat.description.substring(0, 60)}…</p>
-                </div>
+              <h2>About <span>Megapac</span></h2>
+              <p>
+                Megapac Industries Pte Ltd is proud to be one of the leading manufacturers and distributors of adhesive tapes, packaging materials and associated machinery in the market. We work with both local and international clients from a wide range of industries.
+              </p>
+              <div style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap', marginBottom: 'var(--space-5)', marginTop: 'var(--space-4)' }}>
+                <div className="badge badge-success">✓ BizSafe 3 Certified</div>
+                <div className="badge badge-info">✓ Local &amp; International Clients</div>
+              </div>
+              <Link href="/about" className="btn btn-primary">
+                Learn More About Us →
               </Link>
-            ))}
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Image src="/images/megapac-logo-new.png" alt="Megapac Industries" width={400} height={200} style={{ objectFit: 'contain', maxWidth: '100%' }} />
+            </div>
           </div>
         </div>
       </section>
+
+      {/* CTA Banner */}
+      <section className="cta-banner" id="quote">
+        <div className="container">
+          <h2>Need Packaging Supplies?</h2>
+          <p>Get a personalised quote from our sales team — no obligation, fast response.</p>
+          <div style={{ display: 'flex', gap: 'var(--space-4)', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <button className="btn btn-primary btn-lg" onClick={() => setQuoteOpen(true)}>
+              Request a Quote
+            </button>
+            <a
+              href="https://wa.me/6590482345?text=Hi%20Megapac%2C%20I%27m%20interested%20in%20your%20packaging%20products."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-lg"
+              style={{ background: '#25D366', color: '#fff', borderColor: '#25D366' }}
+            >
+              💬 WhatsApp Us
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <QuoteForm isOpen={quoteOpen} onClose={() => setQuoteOpen(false)} />
     </>
   );
 }

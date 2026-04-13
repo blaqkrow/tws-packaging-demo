@@ -16,9 +16,9 @@ function SearchContent() {
       <section className="page-title-section">
         <div className="container">
           <div className="breadcrumb" style={{ marginBottom: 'var(--space-3)' }}>
-            <Link href="/" style={{ color: 'var(--navy-200)' }}>Home</Link>
+            <Link href="/" style={{ color: 'rgba(255,255,255,.6)' }}>Home</Link>
             <span className="sep">/</span>
-            <span style={{ color: 'var(--amber-400)' }}>Search</span>
+            <span style={{ color: 'var(--red-300)' }}>Search</span>
           </div>
           <h1>Search Results</h1>
           {query && <p>Showing results for &ldquo;{query}&rdquo;</p>}

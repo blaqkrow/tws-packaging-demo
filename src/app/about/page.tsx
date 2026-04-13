@@ -1,0 +1,246 @@
+'use client';
+
+import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
+
+const expandableSections = [
+  {
+    title: 'Packaging & Warehousing Consultation',
+    content: 'Our experienced team provides comprehensive packaging and warehousing consultation services. We assess your current packaging processes, identify areas for improvement, and recommend cost-effective solutions tailored to your specific needs. From material selection to packaging design optimization, we help businesses reduce waste, improve product protection, and streamline their packaging operations.',
+  },
+  {
+    title: 'Sustainability',
+    content: 'Megapac Industries is committed to sustainable packaging practices. We offer eco-friendly alternatives including biodegradable kraft tapes, recyclable materials, and reduced-waste packaging solutions. Our team stays up-to-date with the latest green packaging innovations to help our clients meet their environmental goals while maintaining product integrity and cost-efficiency.',
+  },
+  {
+    title: 'Workplace Safety',
+    content: 'As a BizSafe 3 certified company, workplace safety is at the core of our operations. We provide safe-to-use packaging tools and equipment, conduct regular safety assessments, and offer guidance on proper handling of packaging materials. Our products are designed to minimize workplace injuries and comply with Singapore\'s Workplace Safety and Health Act.',
+  },
+  {
+    title: 'Rental & User Program',
+    content: 'Megapac offers flexible rental and user programs for packaging machinery and equipment. Whether you need strapping machines, stretch wrapping systems, or tape dispensers, our rental program provides access to quality equipment without the upfront capital investment. We include maintenance, training, and technical support as part of the program.',
+  },
+  {
+    title: 'Automation & Engineering',
+    content: 'We provide end-to-end packaging automation and engineering solutions to help businesses scale their operations. From semi-automatic taping machines to fully automated pallet wrapping systems, we design, install, and maintain packaging production lines that increase throughput, reduce labor costs, and ensure consistent packaging quality.',
+  },
+  {
+    title: 'Spare Parts & Technical Support',
+    content: 'Our dedicated technical support team ensures your packaging machinery operates at peak performance. We stock a comprehensive range of spare parts for all major packaging equipment brands and provide prompt on-site repair services. Our preventive maintenance programs help minimize downtime and extend the lifespan of your equipment.',
+  },
+];
+
+export default function AboutPage() {
+  const [openSection, setOpenSection] = useState<number | null>(null);
+
+  const toggleSection = (index: number) => {
+    setOpenSection(openSection === index ? null : index);
+  };
+
+  return (
+    <>
+      {/* Page Hero */}
+      <section className="page-title-section">
+        <div className="container">
+          <div className="breadcrumb" style={{ marginBottom: 'var(--space-3)' }}>
+            <Link href="/" style={{ color: 'rgba(255,255,255,.6)' }}>Home</Link>
+            <span className="sep">/</span>
+            <span style={{ color: 'var(--red-300)' }}>About Us</span>
+          </div>
+          <h1>About Megapac Industries</h1>
+          <p>Your trusted packaging partner in Singapore &amp; Malaysia</p>
+        </div>
+      </section>
+
+      {/* Who We Are */}
+      <section className="section">
+        <div className="container">
+          <div className="about-page-grid">
+            <div className="about-page-content">
+              <h2>Who We <span>Are</span></h2>
+              <p>
+                Megapac Industries Pte Ltd is proud to be one of the leading manufacturers and distributors of adhesive tapes, packaging materials and associated machinery in the market. We work with both local and international clients from a wide range of industries to supply the most suitable adhesive tape and packaging solutions based on their specific needs and budgets.
+              </p>
+              <p>
+                At Megapac Industries, we have the latest technologies to customize solutions to fit your exact requirements, including printing of specialized messages on tape, laminate materials to the size you need and custom convert non-standard widths and lengths of stretch films.
+              </p>
+              <p>
+                If you need high quality yet cost effective packaging materials and equipment to ensure your product arrives at its destination in one piece, improve safety practices at your industrial facility, repair essential packaging machinery, or even optimize your heating and cooling materials, Megapac Industries definitely can help.
+              </p>
+              <p>
+                Our undisputed reputation in the marketplace has been built through a commitment to quality, high performance and best practice. We have a dedicated sales staff with excellent product knowledge and proven skills in customer relations. Also, our quality experts will check that the products meet international quality standards before delivery.
+              </p>
+              <p>
+                The key to our success is the people that we work with every day. Many of our customer and vendors have been partners since the very beginning. Megapac Industries will continue to grow because of our loyal customers, employees, vendors as well as our commitment to quality products and service.
+              </p>
+            </div>
+            <div className="about-page-image">
+              <Image
+                src="/images/megapac-logo-new.png"
+                alt="Megapac Industries — Packaging DNA"
+                width={500}
+                height={250}
+                style={{ objectFit: 'contain', maxWidth: '100%', height: 'auto' }}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Purpose & Vision */}
+      <section className="section-sm" style={{ background: 'var(--blue-50)' }}>
+        <div className="container">
+          <div className="purpose-vision-grid">
+            <div className="pv-card">
+              <div className="pv-icon">🎯</div>
+              <div className="pv-label">Our Purpose</div>
+              <h3>Our Dedication to Deliver!</h3>
+              <p>We are committed to delivering high-quality packaging solutions with reliability, speed, and exceptional customer service every single time.</p>
+            </div>
+            <div className="pv-card">
+              <div className="pv-icon">🔭</div>
+              <div className="pv-label">Our Vision</div>
+              <h3>Industry Value Leader</h3>
+              <p>To be the industry&apos;s value leader by exceeding our customers&apos; expectation in quality, delivery and cost through continuous improvement and interaction.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Certifications & Stats */}
+      <section className="section">
+        <div className="container">
+          <div className="section-header" style={{ justifyContent: 'center', textAlign: 'center' }}>
+            <div>
+              <h2>Why Choose <span>Megapac</span></h2>
+              <p>Trusted by businesses across Singapore and Malaysia</p>
+            </div>
+          </div>
+
+          {/* Badges */}
+          <div style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap', justifyContent: 'center', marginBottom: 'var(--space-10)' }}>
+            <div className="badge badge-success" style={{ fontSize: '14px', padding: '8px 20px' }}>✓ BizSafe 3 Certified</div>
+            <div className="badge badge-info" style={{ fontSize: '14px', padding: '8px 20px' }}>✓ Local &amp; International Clients</div>
+            <div className="badge badge-info" style={{ fontSize: '14px', padding: '8px 20px' }}>✓ ISO Quality Standards</div>
+          </div>
+
+          {/* Stats */}
+          <div className="about-stats" style={{ maxWidth: '600px', margin: '0 auto' }}>
+            <div className="about-stat">
+              <div className="number">19</div>
+              <div className="label">Product Categories</div>
+            </div>
+            <div className="about-stat">
+              <div className="number">36+</div>
+              <div className="label">Product SKUs</div>
+            </div>
+            <div className="about-stat">
+              <div className="number">SG/MY</div>
+              <div className="label">Serving SG &amp; MY</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Expandable Sections */}
+      <section className="section-sm" style={{ background: 'var(--white)' }}>
+        <div className="container">
+          <div className="section-header" style={{ justifyContent: 'center', textAlign: 'center' }}>
+            <div>
+              <h2>Our <span>Services</span></h2>
+              <p>Comprehensive packaging solutions beyond just products</p>
+            </div>
+          </div>
+          <div className="expandable-sections">
+            {expandableSections.map((section, index) => (
+              <div key={index} className={`expandable-item ${openSection === index ? 'open' : ''}`}>
+                <button
+                  className="expandable-header"
+                  onClick={() => toggleSection(index)}
+                  aria-expanded={openSection === index}
+                >
+                  <h4>{section.title}</h4>
+                  <span className="expandable-icon">{openSection === index ? '−' : '+'}</span>
+                </button>
+                <div className="expandable-content">
+                  <p>{section.content}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Industries We Serve */}
+      <section className="section-sm" style={{ background: 'var(--gray-50)' }}>
+        <div className="container">
+          <div className="section-header" style={{ justifyContent: 'center', textAlign: 'center' }}>
+            <div>
+              <h2>Industries We <span>Serve</span></h2>
+              <p>We supply packaging solutions to businesses across a wide range of industries</p>
+            </div>
+          </div>
+          <div className="industries-grid">
+            {[
+              { icon: '🏭', name: 'Manufacturing', desc: 'Industrial packaging, palletising, and protection materials' },
+              { icon: '📦', name: 'E-Commerce & Retail', desc: 'Shipping supplies, carton sealing, and product packaging' },
+              { icon: '🔬', name: 'Electronics', desc: 'ESD protection, foam cushioning, and anti-static packaging' },
+              { icon: '🏗️', name: 'Construction', desc: 'Surface protection, masking, and heavy-duty wrapping' },
+              { icon: '🍽️', name: 'Food & Beverage', desc: 'Hygienic packaging, desiccants, and void fill solutions' },
+              { icon: '💊', name: 'Pharmaceuticals', desc: 'Moisture control, edge protection, and secure transit packaging' },
+            ].map((ind) => (
+              <div key={ind.name} className="industry-card">
+                <div className="industry-icon">{ind.icon}</div>
+                <h4>{ind.name}</h4>
+                <p>{ind.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Products CTA */}
+      <section className="section">
+        <div className="container">
+          <div className="section-header" style={{ justifyContent: 'center', textAlign: 'center' }}>
+            <div>
+              <h2>Our <span>Products</span></h2>
+              <p>Browse our extensive selection of packaging materials, machinery tools, ESD/Cleanroom equipment and supplies, general product tools and construction adhesive.</p>
+            </div>
+          </div>
+          <div style={{ display: 'flex', gap: 'var(--space-4)', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Link href="/products" className="btn btn-primary btn-lg">
+              Browse Products →
+            </Link>
+            <Link href="/contact" className="btn btn-outline btn-lg">
+              Contact Us
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Banner */}
+      <section className="cta-banner">
+        <div className="container">
+          <h2>Need Packaging Supplies?</h2>
+          <p>Get a personalised quote from our sales team — no obligation, fast response.</p>
+          <div style={{ display: 'flex', gap: 'var(--space-4)', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <a
+              href="https://wa.me/6590482345?text=Hi%20Megapac%2C%20I%27m%20interested%20in%20your%20packaging%20products."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-lg"
+              style={{ background: '#25D366', color: '#fff', borderColor: '#25D366' }}
+            >
+              💬 WhatsApp Us
+            </a>
+            <Link href="/contact" className="btn btn-lg" style={{ background: 'rgba(255,255,255,.15)', color: '#fff', borderColor: 'rgba(255,255,255,.25)' }}>
+              Contact Us
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

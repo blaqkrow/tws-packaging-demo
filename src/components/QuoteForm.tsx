@@ -1,0 +1,105 @@
+'use client';
+
+import { useState } from 'react';
+
+interface QuoteFormProps {
+  productName?: string;
+  productCode?: string;
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export default function QuoteForm({ productName, productCode, isOpen, onClose }: QuoteFormProps) {
+  const [submitted, setSubmitted] = useState(false);
+
+  if (!isOpen) return null;
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+    setTimeout(() => {
+      setSubmitted(false);
+      onClose();
+    }, 3000);
+  };
+
+  return (
+    <div className="quote-overlay" onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}>
+      <div className="quote-modal" style={{ position: 'relative' }}>
+        <button onClick={onClose} style={{ position: 'absolute', top: 16, right: 20, background: 'none', border: 'none', fontSize: 24, color: 'var(--gray-400)', cursor: 'pointer' }}>
+          ✕
+        </button>
+
+        {submitted ? (
+          <div style={{ textAlign: 'center', padding: 'var(--space-8) 0' }}>
+            <div style={{ fontSize: 48, marginBottom: 'var(--space-4)' }}>✓</div>
+            <h2>Quote Request Sent!</h2>
+            <p style={{ color: 'var(--gray-500)', marginTop: 'var(--space-3)' }}>
+              Thank you! Our sales team will get back to you within 1 business day.
+            </p>
+          </div>
+        ) : (
+          <>
+            <h2>Request a <span>Quote</span></h2>
+            <p>Fill in the form below and our sales team will respond within 1 business day.</p>
+
+            <form onSubmit={handleSubmit}>
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Your Name *</label>
+                  <input type="text" placeholder="e.g. John Tan" required />
+                </div>
+                <div className="form-group">
+                  <label>Company Name</label>
+                  <input type="text" placeholder="e.g. ABC Trading Pte Ltd" />
+                </div>
+              </div>
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Phone Number *</label>
+                  <input type="tel" placeholder="+65 9XXX XXXX" required />
+                </div>
+                <div className="form-group">
+                  <label>Email Address *</label>
+                  <input type="email" placeholder="john@company.com" required />
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label>Product of Interest *</label>
+                <input
+                  type="text"
+                  defaultValue={productName ? `${productName}${productCode ? ` (${productCode})` : ''}` : ''}
+                  placeholder="e.g. Smart OPP Tape (Brown) — 48mm × 90m"
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <label>Estimated Quantity</label>
+                <input type="text" placeholder="e.g. 100 rolls, 50 cartons" />
+              </div>
+
+              <div className="form-group">
+                <label>Additional Notes</label>
+                <textarea rows={3} placeholder="Any special requirements, delivery timeline, etc." style={{ resize: 'vertical' }} />
+              </div>
+
+              <button type="submit" className="btn btn-primary btn-lg" style={{ width: '100%' }}>
+                Submit Quote Request
+              </button>
+
+              <p style={{ textAlign: 'center', fontSize: 12, color: 'var(--gray-400)', marginTop: 'var(--space-3)' }}>
+                Or WhatsApp us directly at{' '}
+                <a href="https://wa.me/6590482345" target="_blank" rel="noopener noreferrer" style={{ color: '#25D366', fontWeight: 600 }}>
+                  +65 9048 2345
+                </a>
+              </p>
+            </form>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}

@@ -1,63 +1,156 @@
 'use client';
 
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useState, FormEvent } from 'react';
-import { useCart } from './CartProvider';
+import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import QuoteForm from '@/components/QuoteForm';
 
 export default function Header() {
-  const { totalItems } = useCart();
-  const router = useRouter();
-  const [searchQuery, setSearchQuery] = useState('');
+  const pathname = usePathname();
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [quoteOpen, setQuoteOpen] = useState(false);
 
-  const handleSearch = (e: FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
     }
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileOpen]);
+
+  const navLinks = [
+    { href: '/', label: 'Home' },
+    { href: '/about', label: 'About Us' },
+    { href: '/products', label: 'Products' },
+    { href: '/contact', label: 'Contact Us' },
+  ];
+
+  const isActive = (href: string) => {
+    if (href === '/') return pathname === '/';
+    return pathname.startsWith(href);
   };
 
   return (
-    <header className="header">
-      <div className="container header-inner">
-        <Link href="/" className="header-logo">
-          TWS<span>.</span>
-        </Link>
+    <>
+      <header className="site-header">
+        <div className="header-inner">
+          {/* Left nav (desktop only) */}
+          <nav className="header-nav header-nav-left">
+            {navLinks.slice(0, 2).map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={isActive(link.href) ? 'active' : ''}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
 
-        <nav>
-          <ul className="header-nav">
-            <li><Link href="/">Home</Link></li>
-            <li><Link href="/category/opp-tapes">Products</Link></li>
-            <li><Link href="/account/orders">Account</Link></li>
-            <li><Link href="/admin">Admin</Link></li>
-          </ul>
-        </nav>
-
-        <form className="header-search" onSubmit={handleSearch}>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-            <path fillRule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clipRule="evenodd" />
-          </svg>
-          <input
-            type="text"
-            placeholder="Search products..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        </form>
-
-        <div className="header-actions">
-          <Link href="/cart" className="cart-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/>
-              <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
-            </svg>
-            {totalItems > 0 && <span className="cart-badge">{totalItems}</span>}
+          {/* Center logo */}
+          <Link href="/" className="header-logo">
+            <Image
+              src="/images/megapac-logo-new.png"
+              alt="Megapac Industries — Packaging DNA"
+              width={200}
+              height={50}
+              style={{ height: 64, width: 'auto', objectFit: 'contain' }}
+              priority
+            />
           </Link>
-          <Link href="/account/login" className="btn btn-primary btn-sm">
-            Sign In
-          </Link>
+
+          {/* Right nav (desktop only) */}
+          <nav className="header-nav header-nav-right">
+            {navLinks.slice(2).map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={isActive(link.href) ? 'active' : ''}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <button
+              className="btn btn-primary btn-sm header-quote-btn"
+              onClick={() => setQuoteOpen(true)}
+            >
+              Get a Quote
+            </button>
+          </nav>
+
+          {/* Hamburger button (mobile only) */}
+          <button
+            className={`hamburger ${mobileOpen ? 'open' : ''}`}
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
+      </header>
+
+      {/* Mobile menu overlay */}
+      <div className={`mobile-menu-overlay ${mobileOpen ? 'active' : ''}`} onClick={() => setMobileOpen(false)}>
+        <nav className="mobile-menu" onClick={(e) => e.stopPropagation()}>
+          <div className="mobile-menu-header">
+            <Image
+              src="/images/megapac-logo-new.png"
+              alt="Megapac Industries"
+              width={160}
+              height={40}
+              style={{ height: 52, width: 'auto', objectFit: 'contain' }}
+            />
+            <button className="mobile-menu-close" onClick={() => setMobileOpen(false)} aria-label="Close menu">
+              ✕
+            </button>
+          </div>
+          <div className="mobile-menu-links">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`mobile-menu-link ${isActive(link.href) ? 'active' : ''}`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+          <div className="mobile-menu-footer">
+            <button
+              className="btn btn-primary btn-lg"
+              style={{ width: '100%', textAlign: 'center', marginBottom: '12px' }}
+              onClick={() => { setMobileOpen(false); setQuoteOpen(true); }}
+            >
+              Get a Quote
+            </button>
+            <a
+              href="https://wa.me/6590482345?text=Hi%20Megapac%2C%20I%27m%20interested%20in%20your%20packaging%20products."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-lg"
+              style={{ width: '100%', textAlign: 'center', background: '#25D366', color: '#fff', borderColor: '#25D366' }}
+            >
+              💬 WhatsApp Us
+            </a>
+            <div style={{ textAlign: 'center', marginTop: '16px', fontSize: '13px', color: 'var(--gray-400)' }}>
+              📞 +65 9048 2345<br />
+              📧 sales@megapac.sg
+            </div>
+          </div>
+        </nav>
       </div>
-    </header>
+
+      <QuoteForm isOpen={quoteOpen} onClose={() => setQuoteOpen(false)} />
+    </>
   );
 }

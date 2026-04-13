@@ -3,19 +3,20 @@
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
-import { useCart } from '@/components/CartProvider';
+import { useState, useMemo } from 'react';
 import { getProductBySlug, getProductsByCategory } from '@/data/products';
 import { categories } from '@/data/categories';
 import ProductCard from '@/components/ProductCard';
+import QuoteForm from '@/components/QuoteForm';
 
 export default function ProductDetailPage() {
   const params = useParams();
   const slug = params.slug as string;
   const product = getProductBySlug(slug);
-  const [quantity, setQuantity] = useState(1);
-  const { addItem } = useCart();
-  const [added, setAdded] = useState(false);
+  const [quoteOpen, setQuoteOpen] = useState(false);
+  const [selectedVariant, setSelectedVariant] = useState(0);
+  const [quantity, setQuantity] = useState(100);
+  const [selectedImage, setSelectedImage] = useState(0);
 
   if (!product) {
     return (
@@ -31,28 +32,16 @@ export default function ProductDetailPage() {
   }
 
   const category = categories.find((c) => c.id === product.categoryId);
-  const relatedProducts = getProductsByCategory(product.categorySlug)
-    .filter((p) => p.id !== product.id)
-    .slice(0, 3);
-  const outOfStock = product.stockQty === 0;
-  const lowStock = product.stockQty > 0 && product.stockQty <= 10;
 
-  const handleAddToCart = () => {
-    addItem(
-      {
-        id: product.id,
-        name: product.name,
-        sku: product.sku,
-        slug: product.slug,
-        price: product.price,
-        image: product.images[0],
-        stockQty: product.stockQty,
-      },
-      quantity
-    );
-    setAdded(true);
-    setTimeout(() => setAdded(false), 2000);
-  };
+  /* --- Detect if this is a category with multiple sibling products (like OPP tapes: Transparent/Brown/Printed) --- */
+  const siblingProducts = getProductsByCategory(product.categorySlug);
+  const hasSiblings = siblingProducts.length > 1;
+
+  const relatedProducts = siblingProducts
+    .filter((p) => p.id !== product.id)
+    .slice(0, 4);
+
+  const currentVariant = product.variants[selectedVariant];
 
   return (
     <>
@@ -60,86 +49,150 @@ export default function ProductDetailPage() {
         <div className="container">
           <div className="breadcrumb">
             <Link href="/">Home</Link>
-            <span className="sep">/</span>
-            {category && <><Link href={`/category/${category.slug}`}>{category.name}</Link><span className="sep">/</span></>}
-            <span style={{ color: 'var(--gray-700)' }}>{product.name}</span>
+            <span className="sep" style={{ color: 'var(--gray-300)' }}>/</span>
+            {category && <><Link href={`/category/${category.slug}`}>{category.name}</Link><span className="sep" style={{ color: 'var(--gray-300)' }}>/</span></>}
+            <span style={{ color: 'var(--gray-500)' }}>{product.name}</span>
           </div>
 
           <div className="product-detail">
-            <div className="product-gallery">
-              <Image
-                src={product.images[0]}
-                alt={product.name}
-                width={600}
-                height={600}
-                style={{ objectFit: 'cover' }}
-                priority
-              />
+            {/* Product Image Gallery */}
+            <div className="product-gallery-wrap">
+              <div className="product-gallery-main">
+                <Image
+                  src={product.images[selectedImage] || product.images[0]}
+                  alt={product.name}
+                  width={600}
+                  height={600}
+                  style={{ objectFit: 'contain', padding: '16px' }}
+                  priority
+                />
+              </div>
+              {product.images.length > 1 && (
+                <div className="product-gallery-thumbs">
+                  {product.images.map((img, index) => (
+                    <button
+                      key={index}
+                      className={`product-gallery-thumb ${index === selectedImage ? 'active' : ''}`}
+                      onClick={() => setSelectedImage(index)}
+                    >
+                      <Image
+                        src={img}
+                        alt={`${product.name} - Image ${index + 1}`}
+                        width={80}
+                        height={80}
+                        style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+                      />
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
 
+            {/* Product Info + Configurator */}
             <div className="product-info">
               {category && (
-                <Link href={`/category/${category.slug}`} style={{ fontSize: '13px', fontWeight: 600, color: 'var(--teal-500)', textTransform: 'uppercase', letterSpacing: '.06em' }}>
+                <Link href={`/category/${category.slug}`} style={{ fontSize: '13px', fontWeight: 600, color: 'var(--blue-500)', textTransform: 'uppercase', letterSpacing: '.06em' }}>
                   {category.name}
                 </Link>
               )}
               <h1>{product.name}</h1>
-              <div className="product-sku">SKU: {product.sku}</div>
-
-              <div className="product-price-large">
-                ${product.price.toFixed(2)} <span>/unit</span>
-              </div>
-
-              <div className="stock-indicator">
-                <span className={`stock-dot ${outOfStock ? 'out-of-stock' : lowStock ? 'low-stock' : 'in-stock'}`} />
-                {outOfStock ? (
-                  <span style={{ color: 'var(--danger)' }}>Out of Stock</span>
-                ) : lowStock ? (
-                  <span style={{ color: 'var(--warning)' }}>Low Stock — {product.stockQty} left</span>
-                ) : (
-                  <span style={{ color: 'var(--success)' }}>In Stock — {product.stockQty} units</span>
-                )}
-              </div>
-
               <p className="product-description">{product.description}</p>
 
+              {/* Configurator */}
+              <div className="product-configurator">
+
+                {/* Type Selection (show sibling products as tabs if applicable) */}
+                {hasSiblings && (
+                  <div className="config-section">
+                    <label>Select Type</label>
+                    <div className="config-tabs">
+                      {siblingProducts.map((sib) => (
+                        <Link
+                          key={sib.id}
+                          href={`/product/${sib.slug}`}
+                          className={`config-tab ${sib.id === product.id ? 'active' : ''}`}
+                        >
+                          {sib.name.replace(category?.name + ' ', '').replace('Smart ', '').replace('Customized ', '')}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Size / Variant Selection */}
+                {product.variants.length > 1 && (
+                  <div className="config-section">
+                    <label>Select Size</label>
+                    <select
+                      className="config-select"
+                      value={selectedVariant}
+                      onChange={(e) => setSelectedVariant(Number(e.target.value))}
+                    >
+                      {product.variants.map((v, i) => (
+                        <option key={i} value={i}>{v.spec}</option>
+                      ))}
+                    </select>
+                  </div>
+                )}
+
+                {/* Product Code Display */}
+                {currentVariant && (
+                  <div className="config-section">
+                    <label>Product Code</label>
+                    <code style={{ fontSize: '14px', background: 'var(--blue-50)', padding: '6px 14px', borderRadius: '6px', color: 'var(--blue-700)', display: 'inline-block' }}>
+                      {currentVariant.code}
+                    </code>
+                  </div>
+                )}
+
+                {/* Estimated Quantity */}
+                <div className="config-section">
+                  <label>Estimated Quantity</label>
+                  <div className="config-quantity">
+                    <input
+                      type="number"
+                      min={1}
+                      value={quantity}
+                      onChange={(e) => setQuantity(Number(e.target.value))}
+                    />
+                    <div className="config-quantity-presets">
+                      {[50, 100, 150, 200, 500].map((q) => (
+                        <button
+                          key={q}
+                          className="config-quantity-preset"
+                          onClick={() => setQuantity(q)}
+                          style={quantity === q ? { borderColor: 'var(--blue-500)', color: 'var(--blue-700)', background: 'var(--blue-50)' } : {}}
+                        >
+                          {q}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Specs */}
               <ul className="product-specs">
                 {product.specs.map((spec, i) => (
                   <li key={i}>{spec}</li>
                 ))}
               </ul>
 
-              {!outOfStock && (
-                <>
-                  <div style={{ fontSize: '14px', fontWeight: 600, marginBottom: 'var(--space-2)' }}>Quantity</div>
-                  <div className="quantity-selector">
-                    <button onClick={() => setQuantity(Math.max(1, quantity - 1))}>−</button>
-                    <input
-                      type="number"
-                      value={quantity}
-                      onChange={(e) => setQuantity(Math.max(1, Math.min(product.stockQty, parseInt(e.target.value) || 1)))}
-                      min={1}
-                      max={product.stockQty}
-                    />
-                    <button onClick={() => setQuantity(Math.min(product.stockQty, quantity + 1))}>+</button>
-                  </div>
-
-                  <div style={{ display: 'flex', gap: 'var(--space-3)' }}>
-                    <button className="btn btn-primary btn-lg" onClick={handleAddToCart} style={{ flex: 1 }}>
-                      {added ? '✓ Added to Cart!' : 'Add to Cart'}
-                    </button>
-                    <Link href="/cart" className="btn btn-outline btn-lg">
-                      View Cart
-                    </Link>
-                  </div>
-                </>
-              )}
-
-              {outOfStock && (
-                <button className="btn btn-secondary btn-lg" disabled style={{ width: '100%' }}>
-                  Out of Stock
+              {/* Action Buttons */}
+              <div style={{ display: 'flex', gap: 'var(--space-3)' }}>
+                <button className="btn btn-primary btn-lg" onClick={() => setQuoteOpen(true)} style={{ flex: 1 }}>
+                  Get Quote
                 </button>
-              )}
+                <a
+                  href={`https://wa.me/6590482345?text=Hi%20Megapac%2C%20I%27m%20interested%20in%20${encodeURIComponent(product.name)}%20(${encodeURIComponent(currentVariant?.spec || '')})%20x${quantity}.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-lg"
+                  style={{ background: '#25D366', color: '#fff', borderColor: '#25D366' }}
+                >
+                  💬 WhatsApp
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -147,7 +200,7 @@ export default function ProductDetailPage() {
 
       {/* Related Products */}
       {relatedProducts.length > 0 && (
-        <section className="section-sm" style={{ background: 'var(--gray-100)' }}>
+        <section className="section-sm" style={{ background: 'var(--gray-50)' }}>
           <div className="container">
             <div className="section-header">
               <div>
@@ -162,6 +215,13 @@ export default function ProductDetailPage() {
           </div>
         </section>
       )}
+
+      <QuoteForm
+        isOpen={quoteOpen}
+        onClose={() => setQuoteOpen(false)}
+        productName={product.name}
+        productCode={currentVariant?.code}
+      />
     </>
   );
 }

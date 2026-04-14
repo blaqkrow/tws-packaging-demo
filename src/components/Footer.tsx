@@ -59,6 +59,7 @@ export default function Footer() {
               <li>📧 <a href="mailto:sales@megapac.sg">sales@megapac.sg</a></li>
               <li>📞 <a href="tel:+6590482345">+65 9048 2345</a></li>
               <li>📍 11 Gul Link, Singapore 629381</li>
+              <li style={{ fontSize: '12px', color: 'rgba(255,255,255,.5)', marginTop: '4px' }}>UEN: 53230377M</li>
               <li style={{ marginTop: '8px' }}>
                 <a
                   href="https://wa.me/6590482345?text=Hi%20Megapac%2C%20I%27m%20interested%20in%20your%20packaging%20products."
@@ -85,6 +86,8 @@ export default function Footer() {
               <li><Link href="/about">About Us</Link></li>
               <li><Link href="/products">Products</Link></li>
               <li><Link href="/contact">Contact</Link></li>
+              <li><Link href="/privacy-policy">Privacy Policy</Link></li>
+              <li><Link href="/terms-of-use">Terms of Use</Link></li>
             </ul>
           </div>
         </div>

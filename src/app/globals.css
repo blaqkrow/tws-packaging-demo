@@ -107,47 +107,46 @@ h2 span { color: var(--red-500); }
 
 
 /* ==================================================================
-   HEADER — Centered Logo, Split Nav, Mobile Hamburger
+   HEADER — Stacked: Logo on top, Nav underneath
    ================================================================== */
-.site-header {
+.site-header.site-header-stacked {
   position: sticky;
   top: 0;
   z-index: 100;
   background: var(--white);
   border-bottom: 2px solid var(--blue-700);
-  height: var(--header-height);
   box-shadow: var(--shadow-sm);
+  height: auto;
 }
-.header-inner {
+
+/* Top row: logo centered */
+.header-logo-row {
   display: flex;
   align-items: center;
   justify-content: center;
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 var(--space-6);
-  height: 100%;
+  padding: 12px var(--space-6) 8px;
   position: relative;
 }
-
-/* Logo — always centered */
 .header-logo {
   display: flex;
   align-items: center;
   z-index: 2;
 }
-.header-logo img { height: 48px; width: auto; }
+.header-logo img { height: 70px; width: auto; }
 
-/* Desktop nav — split left and right */
-.header-nav {
+/* Bottom row: nav links centered */
+.header-nav-row {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: var(--space-8);
-  position: absolute;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-6) 10px;
 }
-.header-nav-left { left: var(--space-6); }
-.header-nav-right { right: var(--space-6); }
-
-.header-nav a {
+.header-nav-row a {
   font-weight: 500;
   font-size: 14px;
   color: var(--gray-600);
@@ -156,7 +155,7 @@ h2 span { color: var(--red-500); }
   padding: 6px 0;
   position: relative;
 }
-.header-nav a::after {
+.header-nav-row a::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -166,10 +165,10 @@ h2 span { color: var(--red-500); }
   background: var(--red-500);
   transition: width .3s ease;
 }
-.header-nav a:hover { color: var(--blue-700); }
-.header-nav a:hover::after { width: 100%; }
-.header-nav a.active { color: var(--blue-700); font-weight: 600; }
-.header-nav a.active::after { width: 100%; }
+.header-nav-row a:hover { color: var(--blue-700); }
+.header-nav-row a:hover::after { width: 100%; }
+.header-nav-row a.active { color: var(--blue-700); font-weight: 600; }
+.header-nav-row a.active::after { width: 100%; }
 
 /* Hamburger button — hidden on desktop */
 .hamburger {
@@ -1539,7 +1538,41 @@ h2 span { color: var(--red-500); }
 }
 .product-gallery-thumb.active {
   border-color: var(--blue-600);
-  box-shadow: 0 0 0 2px rgba(43, 93, 174, .2);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, .2);
+}
+
+/* Back button */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: var(--blue-600);
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 8px 0;
+  margin-bottom: 8px;
+  transition: color .2s;
+}
+.back-btn:hover {
+  color: var(--blue-800);
+}
+
+/* Footer legal links */
+.footer-legal-links {
+  display: flex;
+  gap: var(--space-4);
+  margin-top: var(--space-2);
+  font-size: 13px;
+}
+.footer-legal-links a {
+  color: rgba(255,255,255,.5);
+  transition: color .2s;
+}
+.footer-legal-links a:hover {
+  color: rgba(255,255,255,.9);
 }
 
 
@@ -1555,10 +1588,9 @@ h2 span { color: var(--red-500); }
   .industries-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--space-8); }
 
-  /* Header: hide desktop nav, show hamburger */
-  .header-nav { display: none; }
+  /* Header: hide desktop nav row, show hamburger */
+  .header-nav-row { display: none; }
   .hamburger { display: flex; }
-  .header-inner { justify-content: center; }
 
   /* Hero: stack vertically on tablet */
   .hero-split { grid-template-columns: 1fr; gap: var(--space-8); }

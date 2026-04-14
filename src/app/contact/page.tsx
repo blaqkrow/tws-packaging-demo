@@ -77,6 +77,7 @@ export default function ContactPage() {
                   <div>
                     <h4>Address</h4>
                     <p>11 Gul Link, Singapore 629381</p>
+                    <p style={{ fontSize: '12px', color: 'var(--gray-400)', marginTop: '4px' }}>UEN: 53230377M</p>
                   </div>
                 </div>
 

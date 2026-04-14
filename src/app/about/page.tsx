@@ -4,6 +4,31 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
+const clientLogos = [
+  { src: '/images/clients/samsung.png', alt: 'Samsung' },
+  { src: '/images/clients/sony.png', alt: 'Sony' },
+  { src: '/images/clients/hewlett-packard.jpg', alt: 'Hewlett Packard' },
+  { src: '/images/clients/maersk.png', alt: 'Maersk' },
+  { src: '/images/clients/dhl.jpg', alt: 'DHL' },
+  { src: '/images/clients/dsv.png', alt: 'DSV' },
+  { src: '/images/clients/ceva-logistics.png', alt: 'CEVA Logistics' },
+  { src: '/images/clients/gxo.png', alt: 'GXO Logistics' },
+  { src: '/images/clients/db-schenker.png', alt: 'DB Schenker' },
+  { src: '/images/clients/kuehne-nagel.png', alt: 'Kuehne + Nagel' },
+  { src: '/images/clients/ups.jpg', alt: 'UPS' },
+  { src: '/images/clients/flex.png', alt: 'Flex' },
+  { src: '/images/clients/courts.png', alt: 'Courts' },
+  { src: '/images/clients/croda.png', alt: 'Croda' },
+  { src: '/images/clients/infineon.png', alt: 'Infineon' },
+  { src: '/images/clients/texas-instruments.png', alt: 'Texas Instruments' },
+  { src: '/images/clients/bollore-logistics.png', alt: 'Bolloré Logistics' },
+  { src: '/images/clients/best-denki.png', alt: 'Best Denki' },
+  { src: '/images/clients/harvey-norman.png', alt: 'Harvey Norman' },
+  { src: '/images/clients/expeditors.png', alt: 'Expeditors' },
+  { src: '/images/clients/nippon-express.png', alt: 'Nippon Express' },
+  { src: '/images/clients/yusen-logistics.png', alt: 'Yusen Logistics' },
+  { src: '/images/clients/toll.png', alt: 'Toll' },
+];
 const expandableSections = [
   {
     title: 'Packaging & Warehousing Consultation',
@@ -196,6 +221,33 @@ export default function AboutPage() {
                 <p>{ind.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Companies We Serve — Client Logos */}
+      <section className="client-logos-section">
+        <div className="container">
+          <div className="section-header" style={{ justifyContent: 'center', textAlign: 'center' }}>
+            <div>
+              <h2>Companies We <span>Serve</span></h2>
+              <p>Trusted by leading brands across Singapore and Malaysia</p>
+            </div>
+          </div>
+          <div className="client-logos-marquee">
+            <div className="client-logos-track">
+              {[...clientLogos, ...clientLogos].map((logo, index) => (
+                <div key={index} className="client-logo-item">
+                  <Image
+                    src={logo.src}
+                    alt={logo.alt}
+                    width={120}
+                    height={60}
+                    style={{ objectFit: 'contain', width: '100%', height: '100%', filter: 'grayscale(0.3)', opacity: 0.85 }}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

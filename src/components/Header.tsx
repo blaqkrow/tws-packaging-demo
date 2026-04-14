@@ -40,51 +40,19 @@ export default function Header() {
 
   return (
     <>
-      <header className="site-header">
-        <div className="header-inner">
-          {/* Left nav (desktop only) */}
-          <nav className="header-nav header-nav-left">
-            {navLinks.slice(0, 2).map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={isActive(link.href) ? 'active' : ''}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-
-          {/* Center logo */}
+      <header className="site-header site-header-stacked">
+        {/* Top row: Logo centered */}
+        <div className="header-logo-row">
           <Link href="/" className="header-logo">
             <Image
               src="/images/megapac-logo-new.png"
               alt="Megapac Industries — Packaging DNA"
-              width={200}
-              height={50}
-              style={{ height: 64, width: 'auto', objectFit: 'contain' }}
+              width={240}
+              height={60}
+              style={{ height: 70, width: 'auto', objectFit: 'contain' }}
               priority
             />
           </Link>
-
-          {/* Right nav (desktop only) */}
-          <nav className="header-nav header-nav-right">
-            {navLinks.slice(2).map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={isActive(link.href) ? 'active' : ''}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <button
-              className="btn btn-primary btn-sm header-quote-btn"
-              onClick={() => setQuoteOpen(true)}
-            >
-              Get a Quote
-            </button>
-          </nav>
 
           {/* Hamburger button (mobile only) */}
           <button
@@ -97,6 +65,25 @@ export default function Header() {
             <span></span>
           </button>
         </div>
+
+        {/* Bottom row: Nav links centered underneath */}
+        <nav className="header-nav-row">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={isActive(link.href) ? 'active' : ''}
+            >
+              {link.label}
+            </Link>
+          ))}
+          <button
+            className="btn btn-primary btn-sm header-quote-btn"
+            onClick={() => setQuoteOpen(true)}
+          >
+            Get a Quote
+          </button>
+        </nav>
       </header>
 
       {/* Mobile menu overlay */}

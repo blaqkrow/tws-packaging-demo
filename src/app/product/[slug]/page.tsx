@@ -1,6 +1,6 @@
 'use client';
 
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useMemo } from 'react';
@@ -11,6 +11,7 @@ import QuoteForm from '@/components/QuoteForm';
 
 export default function ProductDetailPage() {
   const params = useParams();
+  const router = useRouter();
   const slug = params.slug as string;
   const product = getProductBySlug(slug);
   const [quoteOpen, setQuoteOpen] = useState(false);
@@ -47,6 +48,12 @@ export default function ProductDetailPage() {
     <>
       <section className="section">
         <div className="container">
+          <button
+            onClick={() => router.back()}
+            className="back-btn"
+          >
+            ← Back
+          </button>
           <div className="breadcrumb">
             <Link href="/">Home</Link>
             <span className="sep" style={{ color: 'var(--gray-300)' }}>/</span>

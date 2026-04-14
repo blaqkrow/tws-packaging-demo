@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef } from 'react';
 import ProductCard from '@/components/ProductCard';
 import { categories } from '@/data/categories';
 import { products, searchProducts } from '@/data/products';
@@ -43,6 +43,7 @@ export default function ProductsPage() {
   const [selectedGroup, setSelectedGroup] = useState('All Products');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const productGridRef = useRef<HTMLDivElement>(null);
 
   const activeGroup = productGroups.find((g) => g.name === selectedGroup);
 
@@ -76,7 +77,13 @@ export default function ProductsPage() {
 
   const handleGroupChange = (groupName: string) => {
     setSelectedGroup(groupName);
-    setSelectedCategory('all'); // Reset category when group changes
+    setSelectedCategory('all');
+    setTimeout(() => productGridRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  };
+
+  const handleCategoryChange = (cat: string) => {
+    setSelectedCategory(cat);
+    setTimeout(() => productGridRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
   };
 
   return (
@@ -129,7 +136,7 @@ export default function ProductsPage() {
               <select
                 className="filter-select"
                 value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
+                onChange={(e) => handleCategoryChange(e.target.value)}
               >
                 <option value="all">All Types ({groupCategories.length})</option>
                 {groupCategories.map((c) => (
@@ -174,7 +181,7 @@ export default function ProductsPage() {
       )}
 
       {/* Product Grid */}
-      <section className="section">
+      <section className="section" ref={productGridRef}>
         <div className="container">
           <div className="section-header">
             <div>

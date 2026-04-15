@@ -61,32 +61,6 @@ const heroImages = [
   { src: '/images/hero/hero-3.png', alt: 'Warehouse worker wrapping pallet with stretch film' },
 ];
 
-/* Client logos */
-const clientLogos = [
-  { src: '/images/clients/samsung.png', alt: 'Samsung' },
-  { src: '/images/clients/sony.png', alt: 'Sony' },
-  { src: '/images/clients/hewlett-packard.jpg', alt: 'Hewlett Packard' },
-  { src: '/images/clients/maersk.png', alt: 'Maersk' },
-  { src: '/images/clients/dhl.jpg', alt: 'DHL' },
-  { src: '/images/clients/dsv.png', alt: 'DSV' },
-  { src: '/images/clients/ceva-logistics.png', alt: 'CEVA Logistics' },
-  { src: '/images/clients/gxo.png', alt: 'GXO Logistics' },
-  { src: '/images/clients/db-schenker.png', alt: 'DB Schenker' },
-  { src: '/images/clients/kuehne-nagel.png', alt: 'Kuehne + Nagel' },
-  { src: '/images/clients/ups.jpg', alt: 'UPS' },
-  { src: '/images/clients/flex.png', alt: 'Flex' },
-  { src: '/images/clients/courts.png', alt: 'Courts' },
-  { src: '/images/clients/croda.png', alt: 'Croda' },
-  { src: '/images/clients/infineon.png', alt: 'Infineon' },
-  { src: '/images/clients/texas-instruments.png', alt: 'Texas Instruments' },
-  { src: '/images/clients/bollore-logistics.png', alt: 'Bolloré Logistics' },
-  { src: '/images/clients/best-denki.png', alt: 'Best Denki' },
-  { src: '/images/clients/harvey-norman.png', alt: 'Harvey Norman' },
-  { src: '/images/clients/expeditors.png', alt: 'Expeditors' },
-  { src: '/images/clients/nippon-express.png', alt: 'Nippon Express' },
-  { src: '/images/clients/yusen-logistics.png', alt: 'Yusen Logistics' },
-  { src: '/images/clients/toll.png', alt: 'Toll' },
-];
 
 export default function HomePage() {
   const featured = getFeaturedProducts();
@@ -202,34 +176,6 @@ export default function HomePage() {
               <div className="value-icon">📦</div>
               <h4>Wide Selection</h4>
               <p>Packaging materials, machinery tools, ESD/Cleanroom supplies, and construction adhesive — everything your business needs.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Trusted By — Client Logos */}
-      <section className="client-logos-section">
-        <div className="container">
-          <div className="section-header" style={{ justifyContent: 'center', textAlign: 'center' }}>
-            <div>
-              <h2>Trusted By <span>Industry Leaders</span></h2>
-              <p>We proudly supply packaging solutions to these leading companies</p>
-            </div>
-          </div>
-          <div className="client-logos-marquee">
-            <div className="client-logos-track">
-              {/* Double the logos for seamless infinite scroll */}
-              {[...clientLogos, ...clientLogos].map((logo, index) => (
-                <div key={`${logo.alt}-${index}`} className="client-logo-item">
-                  <Image
-                    src={logo.src}
-                    alt={logo.alt}
-                    width={140}
-                    height={70}
-                    style={{ maxWidth: '120px', maxHeight: '55px', objectFit: 'contain', filter: 'grayscale(100%)', opacity: 0.65, transition: 'all .3s ease' }}
-                  />
-                </div>
-              ))}
             </div>
           </div>
         </div>

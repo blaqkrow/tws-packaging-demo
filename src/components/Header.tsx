@@ -40,19 +40,38 @@ export default function Header() {
 
   return (
     <>
-      <header className="site-header site-header-stacked">
-        {/* Top row: Logo centered */}
-        <div className="header-logo-row">
+      <header className="site-header">
+        <div className="header-inner">
+          {/* Logo — left */}
           <Link href="/" className="header-logo">
             <Image
               src="/images/megapac-logo-new.png"
               alt="Megapac Industries — Packaging DNA"
-              width={240}
-              height={60}
-              style={{ height: 70, width: 'auto', objectFit: 'contain' }}
+              width={280}
+              height={70}
+              style={{ height: 80, width: 'auto', objectFit: 'contain' }}
               priority
             />
           </Link>
+
+          {/* Nav links — right */}
+          <nav className="header-nav">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={isActive(link.href) ? 'active' : ''}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <button
+              className="btn btn-primary btn-sm header-quote-btn"
+              onClick={() => setQuoteOpen(true)}
+            >
+              Get a Quote
+            </button>
+          </nav>
 
           {/* Hamburger button (mobile only) */}
           <button
@@ -65,25 +84,6 @@ export default function Header() {
             <span></span>
           </button>
         </div>
-
-        {/* Bottom row: Nav links centered underneath */}
-        <nav className="header-nav-row">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={isActive(link.href) ? 'active' : ''}
-            >
-              {link.label}
-            </Link>
-          ))}
-          <button
-            className="btn btn-primary btn-sm header-quote-btn"
-            onClick={() => setQuoteOpen(true)}
-          >
-            Get a Quote
-          </button>
-        </nav>
       </header>
 
       {/* Mobile menu overlay */}
@@ -130,7 +130,7 @@ export default function Header() {
               💬 WhatsApp Us
             </a>
             <div style={{ textAlign: 'center', marginTop: '16px', fontSize: '13px', color: 'var(--gray-400)' }}>
-              📞 +65 9048 2345<br />
+              📞 +65 6558 7120<br />
               📧 sales@megapac.sg
             </div>
           </div>

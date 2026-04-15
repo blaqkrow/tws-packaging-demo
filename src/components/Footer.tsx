@@ -57,7 +57,7 @@ export default function Footer() {
             <h4>Contact Us</h4>
             <ul>
               <li>📧 <a href="mailto:sales@megapac.sg">sales@megapac.sg</a></li>
-              <li>📞 <a href="tel:+6590482345">+65 9048 2345</a></li>
+              <li>📞 <a href="tel:+6565587120">+65 6558 7120</a></li>
               <li>📍 11 Gul Link, Singapore 629381</li>
               <li style={{ fontSize: '12px', color: 'rgba(255,255,255,.5)', marginTop: '4px' }}>UEN: 53230377M</li>
               <li style={{ marginTop: '8px' }}>
@@ -68,6 +68,16 @@ export default function Footer() {
                   style={{ color: '#25D366', fontWeight: 600, fontSize: '13px' }}
                 >
                   💬 WhatsApp Us
+                </a>
+              </li>
+              <li style={{ marginTop: '12px' }}>
+                <a
+                  href="https://www.google.com/maps/place/11+Gul+Link,+Singapore+629381"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: 'rgba(255,255,255,.7)', fontSize: '13px', textDecoration: 'underline' }}
+                >
+                  📍 View on Google Maps
                 </a>
               </li>
             </ul>

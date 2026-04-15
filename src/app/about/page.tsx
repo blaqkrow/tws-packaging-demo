@@ -85,19 +85,13 @@ export default function AboutPage() {
             <div className="about-page-content">
               <h2>Who We <span>Are</span></h2>
               <p>
-                Megapac Industries Pte Ltd is proud to be one of the leading manufacturers and distributors of adhesive tapes, packaging materials and associated machinery in the market. We work with both local and international clients from a wide range of industries to supply the most suitable adhesive tape and packaging solutions based on their specific needs and budgets.
+                Megapac Industrial Pte Ltd is a Singapore-based one-stop solution provider for industrial packaging materials and equipment.
               </p>
               <p>
-                At Megapac Industries, we have the latest technologies to customize solutions to fit your exact requirements, including printing of specialized messages on tape, laminate materials to the size you need and custom convert non-standard widths and lengths of stretch films.
+                We support businesses across logistics, warehousing, manufacturing, and distribution with a reliable supply of packaging products, including adhesive tapes, stretch film, and protective packaging solutions.
               </p>
               <p>
-                If you need high quality yet cost effective packaging materials and equipment to ensure your product arrives at its destination in one piece, improve safety practices at your industrial facility, repair essential packaging machinery, or even optimize your heating and cooling materials, Megapac Industries definitely can help.
-              </p>
-              <p>
-                Our undisputed reputation in the marketplace has been built through a commitment to quality, high performance and best practice. We have a dedicated sales staff with excellent product knowledge and proven skills in customer relations. Also, our quality experts will check that the products meet international quality standards before delivery.
-              </p>
-              <p>
-                The key to our success is the people that we work with every day. Many of our customer and vendors have been partners since the very beginning. Megapac Industries will continue to grow because of our loyal customers, employees, vendors as well as our commitment to quality products and service.
+                Leveraging the latest technologies, we provide customised solutions tailored to meet specific operational requirements. Our focus is on delivering high-quality, cost-effective products backed by consistent supply and dependable service.
               </p>
             </div>
             <div className="about-page-image">
@@ -113,21 +107,46 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Purpose & Vision */}
-      <section className="section-sm" style={{ background: 'var(--blue-50)' }}>
+      {/* Why Choose Us */}
+      <section className="section" style={{ background: 'var(--gray-50)' }}>
         <div className="container">
-          <div className="purpose-vision-grid">
-            <div className="pv-card">
-              <div className="pv-icon">🎯</div>
-              <div className="pv-label">Our Purpose</div>
-              <h3>Our Dedication to Deliver!</h3>
-              <p>We are committed to delivering high-quality packaging solutions with reliability, speed, and exceptional customer service every single time.</p>
+          <div className="section-header" style={{ justifyContent: 'center', textAlign: 'center' }}>
+            <div>
+              <h2>Why Choose <span>Us</span></h2>
+              <p>At Megapac, we understand that packaging plays a critical role in daily operations. We are committed to providing reliable solutions that businesses can depend on.</p>
             </div>
-            <div className="pv-card">
-              <div className="pv-icon">🔭</div>
-              <div className="pv-label">Our Vision</div>
-              <h3>Industry Value Leader</h3>
-              <p>To be the industry&apos;s value leader by exceeding our customers&apos; expectation in quality, delivery and cost through continuous improvement and interaction.</p>
+          </div>
+
+          <div className="industries-grid">
+            <div className="industry-card">
+              <div className="industry-icon">📦</div>
+              <h4>One-Stop Packaging Solution</h4>
+              <p>A complete range of packaging materials and equipment to support all your operational needs.</p>
+            </div>
+            <div className="industry-card">
+              <div className="industry-icon">⚙️</div>
+              <h4>Customised Solutions</h4>
+              <p>Advanced technologies enable us to tailor products and solutions to your exact requirements.</p>
+            </div>
+            <div className="industry-card">
+              <div className="industry-icon">💰</div>
+              <h4>High Quality, Cost-Effective Products</h4>
+              <p>Designed to deliver consistent performance while optimising operational costs.</p>
+            </div>
+            <div className="industry-card">
+              <div className="industry-icon">🤝</div>
+              <h4>Dedicated Sales Support</h4>
+              <p>Experienced team with strong product knowledge and proven customer service capabilities.</p>
+            </div>
+            <div className="industry-card">
+              <div className="industry-icon">✅</div>
+              <h4>Strict Quality Assurance</h4>
+              <p>Products are checked by quality experts to ensure they meet international standards.</p>
+            </div>
+            <div className="industry-card">
+              <div className="industry-icon">🚚</div>
+              <h4>Reliable Supply &amp; Delivery</h4>
+              <p>Ready stock and efficient logistics to ensure consistent and timely fulfilment.</p>
             </div>
           </div>
         </div>
@@ -138,7 +157,7 @@ export default function AboutPage() {
         <div className="container">
           <div className="section-header" style={{ justifyContent: 'center', textAlign: 'center' }}>
             <div>
-              <h2>Why Choose <span>Megapac</span></h2>
+              <h2>Trusted <span>Certifications</span></h2>
               <p>Trusted by businesses across Singapore and Malaysia</p>
             </div>
           </div>
@@ -241,8 +260,8 @@ export default function AboutPage() {
                   <Image
                     src={logo.src}
                     alt={logo.alt}
-                    width={120}
-                    height={60}
+                    width={160}
+                    height={80}
                     style={{ objectFit: 'contain', width: '100%', height: '100%', filter: 'grayscale(0.3)', opacity: 0.85 }}
                   />
                 </div>

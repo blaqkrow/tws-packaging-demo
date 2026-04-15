@@ -43,7 +43,7 @@ export default function ContactPage() {
                   <div className="contact-info-icon">📞</div>
                   <div>
                     <h4>Phone</h4>
-                    <p><a href="tel:+6590482345">+65 9048 2345</a></p>
+                    <p><a href="tel:+6565587120">+65 6558 7120</a></p>
                   </div>
                 </div>
 
@@ -92,6 +92,20 @@ export default function ContactPage() {
                     </p>
                   </div>
                 </div>
+              </div>
+
+              {/* Google Maps */}
+              <div style={{ marginTop: 'var(--space-6)', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--gray-200)' }}>
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.7847!2d103.6372!3d1.2765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da0e1b1b1b1b1b%3A0x1b1b1b1b1b1b1b1b!2s11%20Gul%20Link%2C%20Singapore%20629381!5e0!3m2!1sen!2ssg!4v1"
+                  width="100%"
+                  height="280"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Megapac Industries Location"
+                />
               </div>
             </div>
 

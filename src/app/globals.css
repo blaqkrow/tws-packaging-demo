@@ -107,9 +107,9 @@ h2 span { color: var(--red-500); }
 
 
 /* ==================================================================
-   HEADER — Stacked: Logo on top, Nav underneath
+   HEADER — Single-row: Logo left, Nav right
    ================================================================== */
-.site-header.site-header-stacked {
+.site-header {
   position: sticky;
   top: 0;
   z-index: 100;
@@ -118,35 +118,29 @@ h2 span { color: var(--red-500); }
   box-shadow: var(--shadow-sm);
   height: auto;
 }
-
-/* Top row: logo centered */
-.header-logo-row {
+.header-inner {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 12px var(--space-6) 8px;
-  position: relative;
+  padding: 10px var(--space-6);
 }
 .header-logo {
   display: flex;
   align-items: center;
   z-index: 2;
+  flex-shrink: 0;
 }
-.header-logo img { height: 70px; width: auto; }
+.header-logo img { height: 80px; width: auto; }
 
-/* Bottom row: nav links centered */
-.header-nav-row {
+/* Nav links — right side */
+.header-nav {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: var(--space-8);
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 var(--space-6) 10px;
+  gap: var(--space-7);
 }
-.header-nav-row a {
+.header-nav a {
   font-weight: 500;
   font-size: 14px;
   color: var(--gray-600);
@@ -155,7 +149,7 @@ h2 span { color: var(--red-500); }
   padding: 6px 0;
   position: relative;
 }
-.header-nav-row a::after {
+.header-nav a::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -165,10 +159,10 @@ h2 span { color: var(--red-500); }
   background: var(--red-500);
   transition: width .3s ease;
 }
-.header-nav-row a:hover { color: var(--blue-700); }
-.header-nav-row a:hover::after { width: 100%; }
-.header-nav-row a.active { color: var(--blue-700); font-weight: 600; }
-.header-nav-row a.active::after { width: 100%; }
+.header-nav a:hover { color: var(--blue-700); }
+.header-nav a:hover::after { width: 100%; }
+.header-nav a.active { color: var(--blue-700); font-weight: 600; }
+.header-nav a.active::after { width: 100%; }
 
 /* Hamburger button — hidden on desktop */
 .hamburger {
@@ -485,9 +479,9 @@ h2 span { color: var(--red-500); }
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 120px;
-  height: 60px;
-  padding: var(--space-2);
+  min-width: 160px;
+  height: 80px;
+  padding: var(--space-3);
 }
 .client-logo-item:hover img {
   filter: grayscale(0%) !important;
@@ -658,7 +652,7 @@ h2 span { color: var(--red-500); }
   align-items: center;
   justify-content: center;
 }
-.product-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+.product-card-img img { width: 100%; height: 100%; object-fit: contain; padding: 8px; transition: transform .4s ease; }
 .product-card:hover .product-card-img img { transform: scale(1.05); }
 .product-card-body {
   padding: var(--space-5);
@@ -714,7 +708,7 @@ h2 span { color: var(--red-500); }
   cursor: pointer;
   transition: all .3s ease;
 }
-.category-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+.category-card img { width: 100%; height: 100%; object-fit: contain; padding: 8px; transition: transform .4s ease; }
 .category-card:hover img { transform: scale(1.08); }
 .category-card-overlay {
   position: absolute;
@@ -1545,19 +1539,22 @@ h2 span { color: var(--red-500); }
 .back-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  background: none;
-  border: none;
-  color: var(--blue-600);
-  font-weight: 500;
-  font-size: 14px;
+  gap: 8px;
+  background: var(--blue-50);
+  border: 1px solid var(--blue-200);
+  color: var(--blue-700);
+  font-weight: 600;
+  font-size: 15px;
   cursor: pointer;
-  padding: 8px 0;
-  margin-bottom: 8px;
-  transition: color .2s;
+  padding: 10px 20px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  transition: all .2s;
 }
 .back-btn:hover {
-  color: var(--blue-800);
+  color: var(--white);
+  background: var(--blue-700);
+  border-color: var(--blue-700);
 }
 
 /* Footer legal links */
@@ -1588,8 +1585,8 @@ h2 span { color: var(--red-500); }
   .industries-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--space-8); }
 
-  /* Header: hide desktop nav row, show hamburger */
-  .header-nav-row { display: none; }
+  /* Header: hide desktop nav, show hamburger */
+  .header-nav { display: none; }
   .hamburger { display: flex; }
 
   /* Hero: stack vertically on tablet */

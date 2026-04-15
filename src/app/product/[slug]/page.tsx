@@ -104,6 +104,9 @@ export default function ProductDetailPage() {
               )}
               <h1>{product.name}</h1>
               <p className="product-description">{product.description}</p>
+              <p style={{ fontSize: '13px', color: 'var(--blue-600)', fontStyle: 'italic', marginTop: '8px', fontWeight: 500 }}>
+                Part of our one-stop packaging solution to support your business operations.
+              </p>
 
               {/* Configurator */}
               <div className="product-configurator">

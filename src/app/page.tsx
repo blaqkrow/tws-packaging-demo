@@ -143,7 +143,7 @@ export default function HomePage() {
             </div>
             <div className="info-strip-item">
               <span className="info-strip-icon">📞</span>
-              <a href="tel:+6590482345">+65 9048 2345</a>
+              <a href="tel:+6565587120">+65 6558 7120</a>
             </div>
             <div className="info-strip-item">
               <span className="info-strip-icon">📧</span>

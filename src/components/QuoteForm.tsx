@@ -148,7 +148,7 @@ export default function QuoteForm({ productName, productCode, isOpen, onClose }:
               <p style={{ textAlign: 'center', fontSize: 12, color: 'var(--gray-400)', marginTop: 'var(--space-3)' }}>
                 Or WhatsApp us directly at{' '}
                 <a href="https://wa.me/6590482345" target="_blank" rel="noopener noreferrer" style={{ color: '#25D366', fontWeight: 600 }}>
-                  +65 9048 2345
+                  +65 6558 7120
                 </a>
               </p>
             </form>

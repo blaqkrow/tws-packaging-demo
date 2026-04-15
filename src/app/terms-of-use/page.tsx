@@ -56,7 +56,7 @@ export default function TermsOfUsePage() {
             <p>If you have any questions about these Terms of Use, please contact us at:</p>
             <p style={{ marginTop: 'var(--space-3)' }}>
               <strong>Email:</strong> <a href="mailto:sales@megapac.sg" style={{ color: 'var(--blue-600)' }}>sales@megapac.sg</a><br />
-              <strong>Phone:</strong> <a href="tel:+6590482345" style={{ color: 'var(--blue-600)' }}>+65 9048 2345</a><br />
+              <strong>Phone:</strong> <a href="tel:+6565587120" style={{ color: 'var(--blue-600)' }}>+65 6558 7120</a><br />
               <strong>Address:</strong> 11 Gul Link, Singapore 629381
             </p>
           </div>

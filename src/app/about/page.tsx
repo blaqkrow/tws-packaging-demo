@@ -85,13 +85,16 @@ export default function AboutPage() {
             <div className="about-page-content">
               <h2>Who We <span>Are</span></h2>
               <p>
-                Megapac Industrial Pte Ltd is a Singapore-based one-stop solution provider for industrial packaging materials and equipment.
+                Megapac Industrial Pte Ltd is a Singapore-based one-stop industrial packaging solutions provider, delivering materials and equipment to support business operations across multiple industries.
               </p>
               <p>
-                We support businesses across logistics, warehousing, manufacturing, and distribution with a reliable supply of packaging products, including adhesive tapes, stretch film, and protective packaging solutions.
+                With over 20 years of industry experience, we have established a strong track record working with both local and international clients. Our expertise lies in supplying the most suitable adhesive tapes and packaging solutions based on specific operational requirements and budget considerations.
               </p>
               <p>
-                Leveraging the latest technologies, we provide customised solutions tailored to meet specific operational requirements. Our focus is on delivering high-quality, cost-effective products backed by consistent supply and dependable service.
+                We support businesses in logistics, warehousing, manufacturing, and distribution with a reliable range of products, including adhesive tapes, stretch film, and protective packaging.
+              </p>
+              <p>
+                Leveraging the latest technologies and industry knowledge, we deliver customised, high-performance solutions backed by consistent quality, cost efficiency, and dependable supply.
               </p>
             </div>
             <div className="about-page-image">

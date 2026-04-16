@@ -538,9 +538,9 @@ h2 span { color: var(--red-500); }
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 160px;
-  height: 80px;
-  padding: var(--space-3);
+  min-width: 240px;
+  height: 120px;
+  padding: var(--space-4);
 }
 .client-logo-item:hover img {
   filter: grayscale(0%) !important;

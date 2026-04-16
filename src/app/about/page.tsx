@@ -263,9 +263,9 @@ export default function AboutPage() {
                   <Image
                     src={logo.src}
                     alt={logo.alt}
-                    width={160}
-                    height={80}
-                    style={{ objectFit: 'contain', width: '100%', height: '100%', filter: 'grayscale(0.3)', opacity: 0.85 }}
+                    width={240}
+                    height={120}
+                    style={{ objectFit: 'contain', width: '100%', height: '100%', filter: 'grayscale(0.1)', opacity: 0.95 }}
                   />
                 </div>
               ))}

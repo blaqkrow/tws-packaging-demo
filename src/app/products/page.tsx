@@ -53,6 +53,11 @@ function ProductsContent() {
     if (q) setSearchQuery(q);
   }, [searchParams]);
 
+  // Scroll to top when filters change
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [selectedGroup, selectedCategory, searchQuery]);
+
   const activeGroup = productGroups.find((g) => g.name === selectedGroup);
 
   /* Get categories in the selected group */

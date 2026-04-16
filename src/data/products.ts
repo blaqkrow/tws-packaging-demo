@@ -43,11 +43,11 @@ export const products: Product[] = [
   //  SMART OPP TAPES (cat-2) — Merged Transparent + Brown
   // ═══════════════════════════════════════
   {
-    id: 'prod-4',
-    name: 'Smart OPP Tape',
-    slug: 'smart-opp-tape',
-    description: 'Strong plastic packing tape used for sealing cartons. Good adhesion, durable, and cost-effective for general packaging. Available in Transparent and Brown.',
-    specs: ['Material: OPP (Oriented Polypropylene)', 'Colour: Transparent / Brown'],
+    id: 'prod-4-trans',
+    name: 'Smart OPP Tape (Transparent)',
+    slug: 'smart-opp-tape-transparent',
+    description: 'Strong plastic packing tape used for sealing cartons. Good adhesion, durable, and cost-effective for general packaging.',
+    specs: ['Material: OPP (Oriented Polypropylene)', 'Colour: Transparent'],
     categoryId: 'cat-2',
     categorySlug: 'opp-tapes',
     images: ['/images/products-new/opp-tape-product.png', '/images/products-new/opp-tape-transparent.png'],
@@ -62,6 +62,20 @@ export const products: Product[] = [
       { code: 'OPP-S7290TE', spec: '72mm × 90m — Transparent' },
       { code: 'OPP-S48900TE', spec: '48mm × 900m (Machine Roll) — Transparent' },
       { code: 'OPP-S72900TE', spec: '72mm × 900m (Machine Roll) — Transparent' },
+    ],
+    isFeatured: true,
+    isActive: true,
+  },
+  {
+    id: 'prod-4-brown',
+    name: 'Smart OPP Tape (Brown)',
+    slug: 'smart-opp-tape-brown',
+    description: 'Strong plastic packing tape used for sealing cartons. Good adhesion, durable, and cost-effective for general packaging.',
+    specs: ['Material: OPP (Oriented Polypropylene)', 'Colour: Brown'],
+    categoryId: 'cat-2',
+    categorySlug: 'opp-tapes',
+    images: ['/images/products-new/opp-tape-product.png', '/images/products-new/opp-tape-transparent.png'],
+    variants: [
       { code: 'OPP-S4840BE', spec: '48mm × 40m — Brown' },
       { code: 'OPP-S4845BE', spec: '48mm × 45m — Brown' },
       { code: 'OPP-PI4880BE', spec: '48mm × 80m — Brown' },
@@ -69,7 +83,7 @@ export const products: Product[] = [
       { code: 'OPP-S7290BE', spec: '72mm × 90m — Brown' },
       { code: 'OPP-S48900BE', spec: '48mm × 900m (Machine Roll) — Brown' },
     ],
-    isFeatured: true,
+    isFeatured: false,
     isActive: true,
   },
 

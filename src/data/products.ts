@@ -486,8 +486,8 @@ export const products: Product[] = [
     slug: 'j-clip',
     description: 'Metal seal used with PP strapping; applied with a sealer to secure the strap joint.',
     specs: ['Width: 15mm', 'Weight: 2.5kg per box', 'Material: Metal', 'Usage: For PP strapping'],
-    categoryId: 'cat-17',
-    categorySlug: 'strapping-bands',
+    categoryId: 'cat-17b',
+    categorySlug: 'j-clip',
     images: ['/images/products-new/j-clip-product.jpg', '/images/products-new/j-clip.png'],
     variants: [
       { code: 'JC-2.5KG', spec: '15mm × 2.5kg' },
@@ -501,8 +501,8 @@ export const products: Product[] = [
     slug: 'o-clip',
     description: 'Closed-loop metal seal that provides a stronger, more secure hold for heavier loads.',
     specs: ['Width: 15mm', 'Weight: 800g per pack', 'Material: Metal', 'Usage: For PP strapping'],
-    categoryId: 'cat-17',
-    categorySlug: 'strapping-bands',
+    categoryId: 'cat-17c',
+    categorySlug: 'o-clip',
     images: ['/images/products-new/o-clip-product.jpg', '/images/products-new/o-clip.png'],
     variants: [
       { code: 'MC-15800', spec: '15mm × 800g' },
@@ -516,8 +516,8 @@ export const products: Product[] = [
     slug: 'pp-strapping-tensioner',
     description: 'Tool used to tighten the strap around cartons or pallets before sealing.',
     specs: ['Type: Manual Tensioner', 'Compatible: PP Strapping Bands', 'Usage: Strapping tightening'],
-    categoryId: 'cat-17',
-    categorySlug: 'strapping-bands',
+    categoryId: 'cat-17d',
+    categorySlug: 'strapping-tensioner',
     images: ['/images/products-new/strapping-tensioner-product.jpg'],
     variants: [
       { code: 'PPS-TENSIONER', spec: 'PP Strapping Tensioner' },
@@ -531,8 +531,8 @@ export const products: Product[] = [
     slug: 'pp-strapping-sealer',
     description: 'Tool used to crimp and seal the strap with clips, locking it tightly in place.',
     specs: ['Type: Manual Sealer', 'Compatible: J-Clips, O-Clips', 'Usage: Strapping sealing'],
-    categoryId: 'cat-17',
-    categorySlug: 'strapping-bands',
+    categoryId: 'cat-17e',
+    categorySlug: 'strapping-sealer',
     images: ['/images/products-new/strapping-sealer-product.jpg'],
     variants: [
       { code: 'PPS-Sealer', spec: 'PP Strapping Sealer' },
@@ -595,7 +595,7 @@ export const products: Product[] = [
     specs: ['Material: Foam / Starch-based', 'Type: Loose-fill cushioning', 'Usage: Void fill and fragile item protection'],
     categoryId: 'cat-20',
     categorySlug: 'mic-pac',
-    images: ['/images/products-new/mic-pac-product.png', '/images/products-new/mic-pac.png'],
+    images: ['/images/products-new/mic-pac-product.png'],
     variants: [
       { code: 'MICPAC-STD', spec: 'Standard Mic Pac' },
     ],

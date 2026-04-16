@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useMemo, useRef } from 'react';
+import { useState, useMemo, useRef, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import ProductCard from '@/components/ProductCard';
 import { categories } from '@/data/categories';
 import { products, searchProducts } from '@/data/products';
@@ -31,7 +32,7 @@ const productGroups = [
   },
   {
     name: 'Strapping & Tools',
-    slugs: ['strapping-bands'],
+    slugs: ['strapping-bands', 'j-clip', 'o-clip', 'strapping-tensioner', 'strapping-sealer'],
   },
   {
     name: 'Packaging Supplies',
@@ -39,11 +40,18 @@ const productGroups = [
   },
 ];
 
-export default function ProductsPage() {
+function ProductsContent() {
   const [selectedGroup, setSelectedGroup] = useState('All Products');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const productGridRef = useRef<HTMLDivElement>(null);
+  const searchParams = useSearchParams();
+
+  // Pre-fill search from URL query parameter
+  useEffect(() => {
+    const q = searchParams.get('q');
+    if (q) setSearchQuery(q);
+  }, [searchParams]);
 
   const activeGroup = productGroups.find((g) => g.name === selectedGroup);
 
@@ -243,5 +251,13 @@ export default function ProductsPage() {
         </div>
       </section>
     </>
+  );
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense>
+      <ProductsContent />
+    </Suspense>
   );
 }

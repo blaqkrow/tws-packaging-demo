@@ -277,7 +277,7 @@ export default function AboutPage() {
           <div className="section-header" style={{ justifyContent: 'center', textAlign: 'center' }}>
             <div>
               <h2>Our <span>Products</span></h2>
-              <p>Browse our extensive selection of packaging materials, machinery tools, ESD/Cleanroom equipment and supplies, general product tools and construction adhesive.</p>
+              <p>Browse our extensive selection of packaging materials, machinery tools, general product tools and construction adhesive.</p>
             </div>
           </div>
           <div style={{ display: 'flex', gap: 'var(--space-4)', justifyContent: 'center', flexWrap: 'wrap' }}>

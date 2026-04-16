@@ -86,8 +86,8 @@ export default function ContactPage() {
                   <div>
                     <h4>Opening Hours</h4>
                     <p>
-                      Monday – Friday: 9:00 AM – 6:00 PM<br />
-                      Saturday: 9:00 AM – 1:00 PM<br />
+                      Monday – Friday: 8:00 AM – 5:00 PM<br />
+                      Saturday: 8:00 AM – 12:00 PM<br />
                       Sunday &amp; PH: Closed
                     </p>
                   </div>

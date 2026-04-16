@@ -85,8 +85,8 @@ export default function Footer() {
           <div>
             <h4>Opening Hours</h4>
             <ul>
-              <li>Monday – Friday: 9:00 AM – 6:00 PM</li>
-              <li>Saturday: 9:00 AM – 1:00 PM</li>
+              <li>Monday – Friday: 8:00 AM – 5:00 PM</li>
+              <li>Saturday: 8:00 AM – 12:00 PM</li>
               <li>Sunday &amp; PH: Closed</li>
             </ul>
           </div>

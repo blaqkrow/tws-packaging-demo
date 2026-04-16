@@ -164,6 +164,65 @@ h2 span { color: var(--red-500); }
 .header-nav a.active { color: var(--blue-700); font-weight: 600; }
 .header-nav a.active::after { width: 100%; }
 
+/* Header search toggle */
+.header-search-toggle {
+  background: none;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  padding: 8px 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all .2s;
+  color: var(--gray-500);
+}
+.header-search-toggle:hover {
+  background: var(--gray-50);
+  border-color: var(--blue-300);
+  color: var(--blue-600);
+}
+
+/* Header quote button — bigger */
+.header-quote-btn {
+  font-size: 15px !important;
+  padding: 10px 24px !important;
+  font-weight: 600 !important;
+}
+
+/* Search bar dropdown */
+.header-search-bar {
+  background: var(--white);
+  border-top: 1px solid var(--gray-100);
+  padding: 12px 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+}
+.header-search-form {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.header-search-form input {
+  flex: 1;
+  padding: 10px 16px;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  transition: border-color .2s;
+}
+.header-search-form input:focus {
+  border-color: var(--blue-400);
+  box-shadow: 0 0 0 3px rgba(59,130,246,.1);
+}
+.header-search-close {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: var(--gray-400);
+  padding: 8px;
+}
+.header-search-close:hover { color: var(--gray-700); }
+
 /* Hamburger button — hidden on desktop */
 .hamburger {
   display: none;
@@ -1550,6 +1609,9 @@ h2 span { color: var(--red-500); }
   margin-bottom: 12px;
   border-radius: 8px;
   transition: all .2s;
+  position: sticky;
+  top: 80px;
+  z-index: 50;
 }
 .back-btn:hover {
   color: var(--white);

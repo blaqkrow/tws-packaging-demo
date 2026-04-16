@@ -3,7 +3,7 @@
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { getProductBySlug, getProductsByCategory } from '@/data/products';
 import { categories } from '@/data/categories';
 import ProductCard from '@/components/ProductCard';
@@ -18,6 +18,13 @@ export default function ProductDetailPage() {
   const [selectedVariant, setSelectedVariant] = useState(0);
   const [quantity, setQuantity] = useState(100);
   const [selectedImage, setSelectedImage] = useState(0);
+
+  // Scroll to top when navigating to a new product
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    setSelectedVariant(0);
+    setSelectedImage(0);
+  }, [slug]);
 
   if (!product) {
     return (

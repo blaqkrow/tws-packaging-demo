@@ -2,18 +2,31 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import QuoteForm from '@/components/QuoteForm';
 
 export default function Header() {
   const pathname = usePathname();
+  const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [quoteOpen, setQuoteOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchOpen, setSearchOpen] = useState(false);
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/products?q=${encodeURIComponent(searchQuery.trim())}`);
+      setSearchQuery('');
+      setSearchOpen(false);
+    }
+  };
 
   // Close mobile menu on route change
   useEffect(() => {
     setMobileOpen(false);
+    setSearchOpen(false);
   }, [pathname]);
 
   // Prevent body scroll when mobile menu is open
@@ -66,7 +79,14 @@ export default function Header() {
               </Link>
             ))}
             <button
-              className="btn btn-primary btn-sm header-quote-btn"
+              className="header-search-toggle"
+              onClick={() => setSearchOpen(!searchOpen)}
+              aria-label="Search"
+            >
+              🔍
+            </button>
+            <button
+              className="btn btn-primary header-quote-btn"
               onClick={() => setQuoteOpen(true)}
             >
               Get a Quote
@@ -84,6 +104,25 @@ export default function Header() {
             <span></span>
           </button>
         </div>
+
+        {/* Search bar dropdown */}
+        {searchOpen && (
+          <div className="header-search-bar">
+            <div className="container">
+              <form onSubmit={handleSearch} className="header-search-form">
+                <input
+                  type="text"
+                  placeholder="Search products..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  autoFocus
+                />
+                <button type="submit" className="btn btn-primary btn-sm">Search</button>
+                <button type="button" className="header-search-close" onClick={() => setSearchOpen(false)}>✕</button>
+              </form>
+            </div>
+          </div>
+        )}
       </header>
 
       {/* Mobile menu overlay */}

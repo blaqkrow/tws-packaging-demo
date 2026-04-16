@@ -44,7 +44,7 @@ const productGroups = [
     name: 'Strapping',
     icon: '🔗',
     image: '/images/products-new/strapping-yellow.png',
-    subcategories: ['strapping-bands'],
+    subcategories: ['strapping-bands', 'j-clip', 'o-clip', 'strapping-tensioner', 'strapping-sealer'],
   },
   {
     name: 'Packaging Supplies',
@@ -135,11 +135,11 @@ export default function HomePage() {
           <div className="info-strip-items">
             <div className="info-strip-item">
               <span className="info-strip-icon">📍</span>
-              <span>11 Gul Link, Singapore 629381</span>
+              <a href="https://maps.google.com/?q=11+Gul+Link,+Singapore+629381" target="_blank" rel="noopener noreferrer">11 Gul Link, Singapore 629381</a>
             </div>
             <div className="info-strip-item">
               <span className="info-strip-icon">🕐</span>
-              <span>Mon–Fri 9AM–6PM | Sat 9AM–1PM</span>
+              <span>Mon–Fri 8AM–5PM | Sat 8AM–12PM</span>
             </div>
             <div className="info-strip-item">
               <span className="info-strip-icon">📞</span>
@@ -175,7 +175,7 @@ export default function HomePage() {
             <div className="value-item">
               <div className="value-icon">📦</div>
               <h4>Wide Selection</h4>
-              <p>Packaging materials, machinery tools, ESD/Cleanroom supplies, and construction adhesive — everything your business needs.</p>
+              <p>Packaging materials, machinery tools, and construction adhesive — everything your business needs.</p>
             </div>
           </div>
         </div>
@@ -198,7 +198,7 @@ export default function HomePage() {
               const groupCats = categories.filter((c) => group.subcategories.includes(c.slug));
               return (
                 <div key={group.name} className="product-group-card">
-                  <Link href="/products" className="product-group-img">
+                  <Link href={`/category/${group.subcategories[0]}`} className="product-group-img">
                     <Image src={group.image} alt={group.name} width={400} height={300} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
                     <div className="product-group-overlay">
                       <h3>{group.name}</h3>

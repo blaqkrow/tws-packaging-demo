@@ -81,6 +81,18 @@ export default function Footer() {
                 </a>
               </li>
             </ul>
+            <div style={{ marginTop: '16px', borderRadius: '8px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.1)' }}>
+              <iframe
+                src="https://maps.google.com/maps?q=11+Gul+Link,+Singapore+629381&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                width="100%"
+                height="140"
+                style={{ border: 0, display: 'block' }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Megapac Industries Mini Map"
+              />
+            </div>
           </div>
           <div>
             <h4>Opening Hours</h4>

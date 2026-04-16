@@ -175,7 +175,7 @@ function ProductsContent() {
                       alt={cat.name}
                       width={400}
                       height={300}
-                      style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+                      style={{ objectFit: 'contain', width: '100%', height: '100%', background: '#fff' }}
                     />
                     <div className="product-group-overlay">
                       <h3>{cat.name}</h3>

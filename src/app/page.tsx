@@ -199,7 +199,7 @@ export default function HomePage() {
               return (
                 <div key={group.name} className="product-group-card">
                   <Link href={`/category/${group.subcategories[0]}`} className="product-group-img">
-                    <Image src={group.image} alt={group.name} width={400} height={300} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
+                    <Image src={group.image} alt={group.name} width={400} height={300} style={{ objectFit: 'contain', width: '100%', height: '100%', background: '#fff' }} />
                     <div className="product-group-overlay">
                       <h3>{group.name}</h3>
                     </div>

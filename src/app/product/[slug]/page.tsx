@@ -94,7 +94,7 @@ export default function ProductDetailPage() {
                         alt={`${product.name} - Image ${index + 1}`}
                         width={80}
                         height={80}
-                        style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+                        style={{ objectFit: 'contain', width: '100%', height: '100%', background: '#fff' }}
                       />
                     </button>
                   ))}

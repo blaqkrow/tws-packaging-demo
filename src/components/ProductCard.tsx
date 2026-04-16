@@ -21,7 +21,7 @@ export default function ProductCard({ product }: Props) {
           alt={product.name}
           width={400}
           height={300}
-          style={{ objectFit: 'cover' }}
+          style={{ objectFit: 'contain', background: '#fff' }}
         />
       </div>
       <div className="product-card-body">

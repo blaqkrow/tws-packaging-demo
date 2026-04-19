@@ -38,6 +38,22 @@ export const products: Product[] = [
     isFeatured: true,
     isActive: true,
   },
+  {
+    id: 'prod-1-2col',
+    name: 'PVC Tape (2 Colour)',
+    slug: 'pvc-tape-2-colour',
+    description: 'Dual-colour PVC tape for visual identification, hazard marking, and decorative bundling. Same PVC construction as our standard range, combining two colours on one roll.',
+    specs: ['Width: 48mm', 'Length: 33m', 'Material: PVC', 'Type: 2-Colour'],
+    categoryId: 'cat-1',
+    categorySlug: 'pvc-tapes',
+    images: ['/images/products-new/pvc-tape-product.png', '/images/products-new/pvc-tape.png'],
+    variants: [
+      { code: 'FMT-4833WR', spec: '48mm × 33m — White + Red' },
+      { code: 'FMT-4833BY', spec: '48mm × 33m — Black + Yellow' },
+    ],
+    isFeatured: false,
+    isActive: true,
+  },
 
   // ═══════════════════════════════════════
   //  SMART OPP TAPES (cat-2) — Merged Transparent + Brown
@@ -82,6 +98,24 @@ export const products: Product[] = [
       { code: 'OPP-S4890BE', spec: '48mm × 90m — Brown' },
       { code: 'OPP-S7290BE', spec: '72mm × 90m — Brown' },
       { code: 'OPP-S48900BE', spec: '48mm × 900m (Machine Roll) — Brown' },
+    ],
+    isFeatured: false,
+    isActive: true,
+  },
+  {
+    id: 'prod-4-color',
+    name: 'Smart OPP Tape (Color)',
+    slug: 'smart-opp-tape-color',
+    description: 'Smart OPP tape in vibrant colours for colour coding, identification, and decorative sealing. Same adhesion and quality as our standard Smart OPP range.',
+    specs: ['Material: OPP (Oriented Polypropylene)', 'Colour: Yellow / Blue / Red / Black'],
+    categoryId: 'cat-2',
+    categorySlug: 'opp-tapes',
+    images: ['/images/products-new/opp-tape-blue.jpeg', '/images/products-new/opp-tape-red.jpeg', '/images/products-new/opp-tape-yellow.jpeg', '/images/products-new/opp-tape-green.jpeg'],
+    variants: [
+      { code: 'OPP-S4845YE', spec: '48mm × 45m — Yellow' },
+      { code: 'OPP-S4845BL', spec: '48mm × 45m — Blue' },
+      { code: 'OPP-S4845RE', spec: '48mm × 45m — Red' },
+      { code: 'OPP-S4845BK', spec: '48mm × 45m — Black' },
     ],
     isFeatured: false,
     isActive: true,
@@ -139,7 +173,7 @@ export const products: Product[] = [
     specs: ['Width: 48mm', 'Length: 7m', 'Material: Cloth / Fabric'],
     categoryId: 'cat-5',
     categorySlug: 'cloth-tape',
-    images: ['/images/products-new/cloth-tape-product.jpeg', '/images/products-new/cloth-tape.png'],
+    images: ['/images/products-new/cloth-tape-no-logo.jpg', '/images/products-new/cloth-tape.png'],
     variants: [
       { code: 'CT-48X7', spec: '48mm × 7m' },
     ],
@@ -449,7 +483,7 @@ export const products: Product[] = [
       { code: 'Silica-10G', spec: '10G — Paper packing (800 packs/tin)' },
       { code: 'Silica-50G', spec: '50G — Heatlon paper (200 packs/tin)' },
       { code: 'Silica-100G', spec: '100G — Heatlon paper (100 packs/tin)' },
-      { code: 'Silica-250G', spec: '250G' },
+      { code: 'Silica-250G', spec: '250G — Heatlon paper (40 packs/tin)' },
       { code: 'Silica-500g', spec: '500G — Heatlon paper (20 packs/tin)' },
     ],
     isFeatured: false,
@@ -470,7 +504,6 @@ export const products: Product[] = [
     images: ['/images/products-new/strapping-band-product.jpg', '/images/products-new/strapping-yellow.png'],
     variants: [
       { code: 'SB-Y152X9Y', spec: '12mm × 9kg — Yellow' },
-      { code: 'SB-15X9Y', spec: '15mm × 9kg — Yellow (MP Stock)' },
       { code: 'SB-Y15X9Y', spec: '15mm × 9kg — Yellow' },
       { code: 'SB-Y15X9BK', spec: '15mm × 9kg — Black' },
       { code: 'SB-15X9BK', spec: '15mm × 9kg — Black' },

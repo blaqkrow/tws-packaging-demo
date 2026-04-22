@@ -5,11 +5,44 @@ import { useState } from 'react';
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 5000);
+    setSubmitting(true);
+    setError('');
+
+    const formData = new FormData(e.currentTarget);
+    const payload = {
+      name: formData.get('name') as string,
+      company: formData.get('company') as string,
+      phone: formData.get('phone') as string,
+      email: formData.get('email') as string,
+      product: formData.get('product') as string,
+      message: formData.get('message') as string,
+    };
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json().catch(() => ({ success: false, error: 'Server returned an unexpected response.' }));
+
+      if (res.ok && data.success && data.method === 'resend') {
+        setSubmitted(true);
+        setTimeout(() => setSubmitted(false), 5000);
+      } else {
+        setError(data.error || 'Could not send your message. Please try again or WhatsApp us directly.');
+      }
+    } catch {
+      setError('Network error — please check your connection and try again, or WhatsApp us directly.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -126,37 +159,42 @@ export default function ContactPage() {
                     <p style={{ color: 'var(--gray-500)', fontSize: '14px', marginBottom: 'var(--space-6)' }}>
                       Fill in the form below and we&apos;ll get back to you within 1 business day.
                     </p>
+                    {error && (
+                      <div style={{ background: '#fee2e2', color: '#b91c1c', padding: '8px 12px', borderRadius: '6px', fontSize: '13px', marginBottom: 'var(--space-4)' }}>
+                        {error}
+                      </div>
+                    )}
                     <form onSubmit={handleSubmit}>
                       <div className="form-row">
                         <div className="form-group">
                           <label>Your Name *</label>
-                          <input type="text" placeholder="e.g. John Tan" required />
+                          <input type="text" name="name" placeholder="e.g. John Tan" required />
                         </div>
                         <div className="form-group">
                           <label>Company Name</label>
-                          <input type="text" placeholder="e.g. ABC Trading Pte Ltd" />
+                          <input type="text" name="company" placeholder="e.g. ABC Trading Pte Ltd" />
                         </div>
                       </div>
                       <div className="form-row">
                         <div className="form-group">
                           <label>Phone Number *</label>
-                          <input type="tel" placeholder="+65 9XXX XXXX" required />
+                          <input type="tel" name="phone" placeholder="+65 9XXX XXXX" required />
                         </div>
                         <div className="form-group">
                           <label>Email Address *</label>
-                          <input type="email" placeholder="john@company.com" required />
+                          <input type="email" name="email" placeholder="john@company.com" required />
                         </div>
                       </div>
                       <div className="form-group">
                         <label>Product of Interest</label>
-                        <input type="text" placeholder="e.g. Smart OPP Tape, Stretch Film, etc." />
+                        <input type="text" name="product" placeholder="e.g. Smart OPP Tape, Stretch Film, etc." />
                       </div>
                       <div className="form-group">
                         <label>Message *</label>
-                        <textarea rows={4} placeholder="Tell us about your packaging needs, estimated quantities, delivery requirements, etc." required style={{ resize: 'vertical' }} />
+                        <textarea name="message" rows={4} placeholder="Tell us about your packaging needs, estimated quantities, delivery requirements, etc." required style={{ resize: 'vertical' }} />
                       </div>
-                      <button type="submit" className="btn btn-primary btn-lg" style={{ width: '100%' }}>
-                        Send Message
+                      <button type="submit" className="btn btn-primary btn-lg" style={{ width: '100%' }} disabled={submitting}>
+                        {submitting ? 'Sending...' : 'Send Message'}
                       </button>
                     </form>
                   </>

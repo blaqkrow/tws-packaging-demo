@@ -5,55 +5,17 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="container">
         <div className="footer-grid">
+          {/* Brand */}
           <div className="footer-brand">
             <h3>Megapac Industries</h3>
             <div className="tagline">Our Dedication to Deliver!</div>
             <p>
-              One of the leading manufacturers and distributors of adhesive tapes, packaging materials and associated machinery in Singapore and Malaysia. Quality products, competitive pricing, fast delivery.
+              One of the leading manufacturers and distributors of adhesive tapes, packaging materials and associated machinery in Singapore and Malaysia.
             </p>
           </div>
 
+          {/* Contact Us */}
           <div className="footer-col">
-            <h4>Tapes</h4>
-            <ul>
-              <li><Link href="/category/pvc-tapes">PVC Tapes</Link></li>
-              <li><Link href="/category/opp-tapes">OPP Tapes</Link></li>
-              <li><Link href="/category/printed-tape">Printed Tape</Link></li>
-              <li><Link href="/category/masking-tape">Masking Tape</Link></li>
-              <li><Link href="/category/cloth-tape">Cloth Tape</Link></li>
-              <li><Link href="/category/kraft-tape">Kraft Tape</Link></li>
-            </ul>
-          </div>
-
-          <div className="footer-col">
-            <h4>Film &amp; Foam</h4>
-            <ul>
-              <li><Link href="/category/stretch-film">Stretch Film</Link></li>
-              <li><Link href="/category/bundle-wrap">Bundle Wrap</Link></li>
-              <li><Link href="/category/pe-foam-rolls">PE Foam Rolls</Link></li>
-              <li><Link href="/category/laminated-pe-foam-sheets">PE Foam Sheets</Link></li>
-              <li><Link href="/category/air-bubble-pak">Air Bubble Pak</Link></li>
-              <li><Link href="/category/pe-sheet-roll">PE Sheet Roll</Link></li>
-            </ul>
-          </div>
-
-          <div className="footer-col">
-            <h4>More Products</h4>
-            <ul>
-              <li><Link href="/category/strapping-bands">Strapping Bands &amp; Tools</Link></li>
-              <li><Link href="/category/edgeboard-protectors">Edgeboard Protectors</Link></li>
-              <li><Link href="/category/dunnage-air-bags">Dunnage Air Bags</Link></li>
-              <li><Link href="/category/packing-list-envelopes">Packing List Envelopes</Link></li>
-              <li><Link href="/category/newsprint-paper">Newsprint Paper</Link></li>
-              <li><Link href="/category/silica-gel">Silica Gel</Link></li>
-              <li><Link href="/category/corrugated-paper-roll">Corrugated Paper</Link></li>
-              <li><Link href="/category/mic-pac">Mic Pac</Link></li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="footer-contact-grid">
-          <div>
             <h4>Contact Us</h4>
             <ul>
               <li>📧 <a href="mailto:sales@megapac.sg">sales@megapac.sg</a></li>
@@ -70,44 +32,39 @@ export default function Footer() {
                   💬 WhatsApp Us
                 </a>
               </li>
-              <li style={{ marginTop: '12px' }}>
-                <a
-                  href="https://www.google.com/maps/place/11+Gul+Link,+Singapore+629381"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: 'rgba(255,255,255,.7)', fontSize: '13px', textDecoration: 'underline' }}
-                >
-                  📍 View on Google Maps
-                </a>
-              </li>
             </ul>
-            <div style={{ marginTop: '16px', borderRadius: '8px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.1)' }}>
+            <div style={{ marginTop: '16px', borderRadius: '6px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.1)' }}>
               <iframe
-                src="https://maps.google.com/maps?q=11+Gul+Link,+Singapore+629381&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                src="https://maps.google.com/maps?q=11+Gul+Link,+Singapore+629381&t=&z=16&ie=UTF8&iwloc=&output=embed"
                 width="100%"
-                height="140"
+                height="120"
                 style={{ border: 0, display: 'block' }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Megapac Industries Mini Map"
+                title="Megapac Industries - 11 Gul Link, Singapore 629381"
               />
             </div>
           </div>
-          <div>
+
+          {/* Opening Hours */}
+          <div className="footer-col">
             <h4>Opening Hours</h4>
             <ul>
-              <li>Monday – Friday: 8:00 AM – 5:00 PM</li>
+              <li>Mon – Fri: 8:00 AM – 5:00 PM</li>
               <li>Saturday: 8:00 AM – 12:00 PM</li>
               <li>Sunday &amp; PH: Closed</li>
             </ul>
           </div>
-          <div>
+
+          {/* Company */}
+          <div className="footer-col">
             <h4>Company</h4>
             <ul>
               <li><Link href="/about">About Us</Link></li>
               <li><Link href="/products">Products</Link></li>
               <li><Link href="/contact">Contact</Link></li>
+              <li><Link href="/careers">Careers</Link></li>
               <li><Link href="/privacy-policy">Privacy Policy</Link></li>
               <li><Link href="/terms-of-use">Terms of Use</Link></li>
             </ul>

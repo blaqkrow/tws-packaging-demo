@@ -6,52 +6,41 @@ import { useState, useEffect, useCallback } from 'react';
 import ProductCard from '@/components/ProductCard';
 import QuoteForm from '@/components/QuoteForm';
 import { getFeaturedProducts } from '@/data/products';
-import { categories } from '@/data/categories';
 
-/* Parent category groups for homepage display */
-const productGroups = [
-  {
-    name: 'Tapes',
-    icon: '🔖',
-    image: '/images/products-new/opp-tape-transparent.png',
-    subcategories: ['pvc-tapes', 'opp-tapes', 'printed-tape', 'masking-tape', 'cloth-tape', 'kraft-tape'],
-  },
-  {
-    name: 'Stretch Film',
-    icon: '🎞️',
-    image: '/images/products-new/stretch-film.png',
-    subcategories: ['stretch-film', 'bundle-wrap'],
-  },
-  {
-    name: 'Foam & Protection',
-    icon: '🛡️',
-    image: '/images/products-new/pe-foam-roll.png',
-    subcategories: ['pe-foam-rolls', 'laminated-pe-foam-sheets', 'pe-sheet-roll'],
-  },
-  {
-    name: 'Edgeboard',
-    icon: '📐',
-    image: '/images/products-new/edgeboard.png',
-    subcategories: ['edgeboard-protectors'],
-  },
-  {
-    name: 'Air Bubble Pak',
-    icon: '💨',
-    image: '/images/products-new/bubble-wrap.png',
-    subcategories: ['air-bubble-pak'],
-  },
-  {
-    name: 'Strapping',
-    icon: '🔗',
-    image: '/images/products-new/strapping-yellow.png',
-    subcategories: ['strapping-bands', 'j-clip', 'o-clip', 'strapping-tensioner', 'strapping-sealer'],
-  },
-  {
-    name: 'Packaging Supplies',
-    icon: '📦',
-    image: '/images/products-new/dunnage-airbag.png',
-    subcategories: ['dunnage-air-bags', 'packing-list-envelopes', 'newsprint-paper', 'silica-gel', 'corrugated-paper-roll', 'mic-pac'],
-  },
+const clientLogos = [
+  { src: '/images/clients/samsung.png', alt: 'Samsung' },
+  { src: '/images/clients/sony.png', alt: 'Sony' },
+  { src: '/images/clients/hewlett-packard.jpg', alt: 'Hewlett Packard' },
+  { src: '/images/clients/maersk.jpg', alt: 'Maersk' },
+  { src: '/images/clients/dhl.jpg', alt: 'DHL' },
+  { src: '/images/clients/dsv.png', alt: 'DSV' },
+  { src: '/images/clients/ceva-logistics.png', alt: 'CEVA Logistics' },
+  { src: '/images/clients/gxo.png', alt: 'GXO Logistics' },
+  { src: '/images/clients/db-schenker.jpg', alt: 'DB Schenker' },
+  { src: '/images/clients/kuehne-nagel.jpg', alt: 'Kuehne + Nagel' },
+  { src: '/images/clients/ups.jpg', alt: 'UPS' },
+  { src: '/images/clients/fedex.jpg', alt: 'FedEx' },
+  { src: '/images/clients/flex.png', alt: 'Flex' },
+  { src: '/images/clients/courts.png', alt: 'Courts' },
+  { src: '/images/clients/croda.png', alt: 'Croda' },
+  { src: '/images/clients/infineon.png', alt: 'Infineon' },
+  { src: '/images/clients/texas-instruments.png', alt: 'Texas Instruments' },
+  { src: '/images/clients/bollore-logistics.png', alt: 'Bolloré Logistics' },
+  { src: '/images/clients/best-denki.png', alt: 'Best Denki' },
+  { src: '/images/clients/harvey-norman.jpg', alt: 'Harvey Norman' },
+  { src: '/images/clients/expeditors.png', alt: 'Expeditors' },
+  { src: '/images/clients/nippon-express.png', alt: 'Nippon Express' },
+  { src: '/images/clients/yusen-logistics.png', alt: 'Yusen Logistics' },
+  { src: '/images/clients/toll.png', alt: 'Toll' },
+];
+
+const services = [
+  { icon: '📋', title: 'Packaging & Warehousing Consultation', content: 'Our experienced team assesses your current packaging processes, identifies areas for improvement, and recommends cost-effective solutions tailored to your specific needs.' },
+  { icon: '♻️', title: 'Sustainability', content: 'We offer eco-friendly alternatives including biodegradable kraft tapes, recyclable materials, and reduced-waste packaging solutions to help meet environmental goals.' },
+  { icon: '🛡️', title: 'Workplace Safety', content: 'As a BizSafe 3 certified company, we provide safe-to-use packaging tools and equipment with regular safety assessments and proper handling guidance.' },
+  { icon: '🔄', title: 'Rental & User Program', content: 'Flexible rental programs for packaging machinery — access quality equipment without upfront capital investment, with maintenance and training included.' },
+  { icon: '⚙️', title: 'Automation & Engineering', content: 'End-to-end packaging automation from semi-automatic taping machines to fully automated pallet wrapping systems that increase throughput and reduce costs.' },
+  { icon: '🔧', title: 'Spare Parts & Technical Support', content: 'Comprehensive spare parts for all major packaging equipment brands with prompt on-site repair and preventive maintenance programs.' },
 ];
 
 /* Hero carousel images */
@@ -181,41 +170,29 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Our Products — Parent Categories */}
-      <section className="section">
+      {/* Companies We Serve — Auto-scrolling Logos */}
+      <section className="client-logos-section">
         <div className="container">
-          <div className="section-header">
+          <div className="section-header" style={{ justifyContent: 'center', textAlign: 'center' }}>
             <div>
-              <h2>Our <span>Products</span></h2>
-              <p>Browse our full catalogue organised by product type.</p>
+              <h2>Companies We <span>Serve</span></h2>
+              <p>Trusted by leading brands across Singapore and Malaysia</p>
             </div>
-            <Link href="/products" className="btn btn-outline">
-              View All →
-            </Link>
           </div>
-          <div className="product-group-grid">
-            {productGroups.map((group) => {
-              const groupCats = categories.filter((c) => group.subcategories.includes(c.slug));
-              return (
-                <div key={group.name} className="product-group-card">
-                  <Link href={`/category/${group.subcategories[0]}`} className="product-group-img">
-                    <Image src={group.image} alt={group.name} width={400} height={300} style={{ objectFit: 'contain', width: '100%', height: '100%', background: '#fff' }} />
-                    <div className="product-group-overlay">
-                      <h3>{group.name}</h3>
-                    </div>
-                  </Link>
-                  {groupCats.length > 1 && (
-                    <div className="product-group-subs">
-                      {groupCats.map((cat) => (
-                        <Link key={cat.id} href={`/category/${cat.slug}`} className="product-group-sub">
-                          {cat.name}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
+          <div className="client-logos-marquee">
+            <div className="client-logos-track">
+              {[...clientLogos, ...clientLogos].map((logo, index) => (
+                <div key={index} className="client-logo-item">
+                  <Image
+                    src={logo.src}
+                    alt={logo.alt}
+                    width={240}
+                    height={120}
+                    style={{ objectFit: 'contain', width: '100%', height: '100%', filter: 'grayscale(0.1)', opacity: 0.95 }}
+                  />
                 </div>
-              );
-            })}
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -240,6 +217,29 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Our Services */}
+      <section className="section">
+        <div className="container">
+          <div className="section-header" style={{ justifyContent: 'center', textAlign: 'center' }}>
+            <div>
+              <h2>Our <span>Services</span></h2>
+              <p>Comprehensive packaging solutions beyond just products</p>
+            </div>
+          </div>
+          <div className="services-grid">
+            {services.map((service, index) => (
+              <div key={index} className="service-card">
+                <div className="service-icon">{service.icon}</div>
+                <div className="service-content">
+                  <h4>{service.title}</h4>
+                  <p>{service.content}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* About Us Teaser */}
       <section className="about-section">
         <div className="container">
@@ -257,8 +257,8 @@ export default function HomePage() {
                 Learn More About Us →
               </Link>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Image src="/images/megapac-logo-new.png" alt="Megapac Industries" width={400} height={200} style={{ objectFit: 'contain', maxWidth: '100%' }} />
+            <div style={{ borderRadius: 'var(--radius-xl)', overflow: 'hidden' }}>
+              <Image src="/images/warehouse/warehouse-1.jpg" alt="Megapac Industries warehouse" width={600} height={400} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
             </div>
           </div>
         </div>

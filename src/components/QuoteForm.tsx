@@ -4,12 +4,12 @@ import { useState } from 'react';
 
 interface QuoteFormProps {
   productName?: string;
-  productCode?: string;
+  productVariant?: string;
   isOpen: boolean;
   onClose: () => void;
 }
 
-export default function QuoteForm({ productName, productCode, isOpen, onClose }: QuoteFormProps) {
+export default function QuoteForm({ productName, productVariant, isOpen, onClose }: QuoteFormProps) {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
@@ -39,33 +39,19 @@ export default function QuoteForm({ productName, productCode, isOpen, onClose }:
         body: JSON.stringify(payload),
       });
 
-      const data = await res.json();
+      const data = await res.json().catch(() => ({ success: false, error: 'Server returned an unexpected response.' }));
 
-      if (data.success) {
-        if (data.method === 'mailto' && data.mailtoLink) {
-          // Open mailto link as fallback
-          window.location.href = data.mailtoLink;
-        }
+      if (res.ok && data.success && data.method === 'resend') {
         setSubmitted(true);
         setTimeout(() => {
           setSubmitted(false);
           onClose();
         }, 3000);
       } else {
-        setError(data.error || 'Something went wrong. Please try again.');
+        setError(data.error || 'Could not send your quote request. Please try again or WhatsApp us directly.');
       }
     } catch {
-      // If API fails, fall back to direct mailto
-      const subject = encodeURIComponent(`Quote Request: ${payload.product} — ${payload.name}`);
-      const body = encodeURIComponent(
-        `Name: ${payload.name}\nCompany: ${payload.company}\nPhone: ${payload.phone}\nEmail: ${payload.email}\nProduct: ${payload.product}\nQuantity: ${payload.quantity}\nNotes: ${payload.notes}`
-      );
-      window.location.href = `mailto:sales@megapac.sg?subject=${subject}&body=${body}`;
-      setSubmitted(true);
-      setTimeout(() => {
-        setSubmitted(false);
-        onClose();
-      }, 3000);
+      setError('Network error — please check your connection and try again, or WhatsApp us directly.');
     } finally {
       setSubmitting(false);
     }
@@ -125,7 +111,7 @@ export default function QuoteForm({ productName, productCode, isOpen, onClose }:
                 <input
                   type="text"
                   name="product"
-                  defaultValue={productName ? `${productName}${productCode ? ` (${productCode})` : ''}` : ''}
+                  defaultValue={productName ? `${productName}${productVariant ? ` — ${productVariant}` : ''}` : ''}
                   placeholder="e.g. Smart OPP Tape (Brown) — 48mm × 90m"
                   required
                 />

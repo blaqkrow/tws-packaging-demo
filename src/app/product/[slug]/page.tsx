@@ -57,12 +57,12 @@ export default function ProductDetailPage() {
     <>
       <section className="section">
         <div className="container">
-          <button
-            onClick={() => router.back()}
+          <Link
+            href={category ? `/category/${category.slug}` : '/products'}
             className="back-btn"
           >
             ← Back
-          </button>
+          </Link>
           <div className="breadcrumb">
             <Link href="/">Home</Link>
             <span className="sep" style={{ color: 'var(--gray-300)' }}>/</span>
@@ -111,7 +111,7 @@ export default function ProductDetailPage() {
                   {category.name}
                 </Link>
               )}
-              <h1>{product.name}</h1>
+              <h1>{product.displayName || product.name}</h1>
               <p className="product-description">{product.description}</p>
               <p style={{ fontSize: '13px', color: 'var(--blue-600)', fontStyle: 'italic', marginTop: '8px', fontWeight: 500 }}>
                 Part of our one-stop packaging solution to support your business operations.
@@ -154,15 +154,7 @@ export default function ProductDetailPage() {
                   </div>
                 )}
 
-                {/* Product Code Display */}
-                {currentVariant && (
-                  <div className="config-section">
-                    <label>Product Code</label>
-                    <code style={{ fontSize: '14px', background: 'var(--blue-50)', padding: '6px 14px', borderRadius: '6px', color: 'var(--blue-700)', display: 'inline-block' }}>
-                      {currentVariant.code}
-                    </code>
-                  </div>
-                )}
+
 
                 {/* Estimated Quantity */}
                 {!hideQuantity && (
@@ -252,7 +244,7 @@ export default function ProductDetailPage() {
         isOpen={quoteOpen}
         onClose={() => setQuoteOpen(false)}
         productName={product.name}
-        productCode={currentVariant?.code}
+        productVariant={currentVariant?.spec}
       />
     </>
   );

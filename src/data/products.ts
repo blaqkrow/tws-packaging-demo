@@ -6,6 +6,9 @@ export interface ProductVariant {
 export interface Product {
   id: string;
   name: string;
+  /** Optional override for card title and detail hero. `name` stays canonical
+      so sibling-product tab labels still derive correctly. */
+  displayName?: string;
   slug: string;
   description: string;
   specs: string[];
@@ -35,7 +38,7 @@ export const products: Product[] = [
       { code: 'FMT-4833B', spec: '48mm × 33m — Blue' },
       { code: 'FMT-4833R', spec: '48mm × 33m — Red' },
     ],
-    isFeatured: true,
+    isFeatured: false,
     isActive: true,
   },
   {
@@ -61,6 +64,7 @@ export const products: Product[] = [
   {
     id: 'prod-4-trans',
     name: 'Smart OPP Tape (Transparent)',
+    displayName: 'Smart OPP Tape',
     slug: 'smart-opp-tape-transparent',
     description: 'Strong plastic packing tape used for sealing cartons. Good adhesion, durable, and cost-effective for general packaging.',
     specs: ['Material: OPP (Oriented Polypropylene)', 'Colour: Transparent'],
@@ -116,6 +120,7 @@ export const products: Product[] = [
       { code: 'OPP-S4845BL', spec: '48mm × 45m — Blue' },
       { code: 'OPP-S4845RE', spec: '48mm × 45m — Red' },
       { code: 'OPP-S4845BK', spec: '48mm × 45m — Black' },
+      { code: 'COPP-T4845G', spec: '48mm × 45m — Green' },
     ],
     isFeatured: false,
     isActive: true,
@@ -192,10 +197,25 @@ export const products: Product[] = [
     specs: ['Material: Kraft Paper', 'Adhesive: Hot-melt', 'Type: Self-adhesive'],
     categoryId: 'cat-6',
     categorySlug: 'kraft-tape',
-    images: ['/images/products-new/kraft-tape-product.jpeg', '/images/products-new/kraft-tape.png'],
+    images: ['/images/products-new/kraft-tape-product-new.jpg'],
     variants: [
       { code: 'KT-5050', spec: '50mm × 50m' },
       { code: 'KT-7550', spec: '75mm × 50m' },
+    ],
+    isFeatured: false,
+    isActive: true,
+  },
+  {
+    id: 'prod-9b',
+    name: 'Reinforced Paper Gummed Tape',
+    slug: 'reinforced-paper-gummed-tape',
+    description: 'Heavy-duty reinforced paper gummed tape with embedded fibre for extra strength. Water-activated adhesive bonds securely to corrugated surfaces — tamper-evident, recyclable, and ideal for heavy carton sealing.',
+    specs: ['Width: 72mm', 'Length: 137m', 'Material: Reinforced Kraft Paper', 'Adhesive: Water-activated gummed', 'Packing: 12 rolls/ctn'],
+    categoryId: 'cat-6',
+    categorySlug: 'kraft-tape',
+    images: ['/images/products-new/kraft-tape-product.jpeg', '/images/products-new/kraft-tape.png'],
+    variants: [
+      { code: 'RPGT-SM72137', spec: '72mm × 137m' },
     ],
     isFeatured: false,
     isActive: true,
@@ -214,16 +234,14 @@ export const products: Product[] = [
     categorySlug: 'stretch-film',
     images: ['/images/products-new/stretch-film-product.png', '/images/products-new/stretch-film.png'],
     variants: [
-      { code: 'SF-50009A', spec: '500mm × 12mic × 1.5kg (250m)' },
-      { code: 'SF-50005', spec: '500mm × 17mic × 2.0kg (220m)' },
-      { code: 'SF-50004', spec: '500mm × 17mic × 2.3kg (250m)' },
-      { code: 'SF-50011A', spec: '500mm × 23mic × 2.2kg (190m)' },
-      { code: 'SF-50011', spec: '500mm × 23mic × 2.3kg (200m)' },
-      { code: 'SF-50012', spec: '500mm × 23mic × 2.5kg (210m)' },
-      { code: 'SF-50012B', spec: '500mm × 23mic × 2.6kg (220m)' },
-      { code: 'SF-50013', spec: '500mm × 23mic × 2.7kg (230m)' },
-      { code: 'SF-50014', spec: '500mm × 23mic × 2.75kg (240m)' },
-      { code: 'SF-50015', spec: '500mm × 23mic × 2.8kg (240m)' },
+      { code: 'SF-50009A', spec: '500mm × 12mic × 1.5kg' },
+      { code: 'SF-50005', spec: '500mm × 17mic × 2.0kg' },
+      { code: 'SF-50004', spec: '500mm × 17mic × 2.3kg' },
+      { code: 'SF-50011A', spec: '500mm × 23mic × 2.2kg' },
+      { code: 'SF-50011', spec: '500mm × 23mic × 2.3kg' },
+      { code: 'SF-50012', spec: '500mm × 23mic × 2.5kg' },
+      { code: 'SF-50012B', spec: '500mm × 23mic × 2.6kg' },
+      { code: 'SF-50013', spec: '500mm × 23mic × 2.7kg' },
     ],
     isFeatured: true,
     isActive: true,
@@ -253,8 +271,8 @@ export const products: Product[] = [
     categorySlug: 'stretch-film',
     images: ['/images/products-new/stretch-film-machine-product.jpeg', '/images/products-new/stretch-film.png'],
     variants: [
-      { code: 'SF-811614', spec: '500mm × 23mic × 14kg (1220m)' },
-      { code: 'SF-811715', spec: '500mm × 23mic × 15kg (1320m)' },
+      { code: 'SF-811614', spec: '500mm × 23mic × 14kg' },
+      { code: 'SF-811715', spec: '500mm × 23mic × 15kg' },
     ],
     isFeatured: false,
     isActive: true,
@@ -379,7 +397,7 @@ export const products: Product[] = [
       { code: 'DAB-10001800', spec: '1000mm × 1800mm' },
       { code: 'DAB-10002200', spec: '1000mm × 2200mm' },
     ],
-    isFeatured: true,
+    isFeatured: false,
     isActive: true,
   },
 
@@ -432,35 +450,21 @@ export const products: Product[] = [
   // ═══════════════════════════════════════
   {
     id: 'prod-25',
-    name: 'Air Bubble Pak (Small Bubble)',
-    slug: 'air-bubble-pak-small',
-    description: 'Lightweight cushioning material with air-filled bubbles used to protect fragile items from impact, shock, and scratches during packing and shipping.',
-    specs: ['Bubble Diameter: 10mm', 'Material: LDPE', 'Type: Small Bubble'],
+    name: 'Air Bubble Pak',
+    slug: 'air-bubble-pak',
+    description: 'Lightweight cushioning material with air-filled bubbles used to protect fragile items from impact, shock, and scratches during packing and shipping. Available in small and big bubble sizes.',
+    specs: ['Bubble Diameter: 10mm / 20mm', 'Material: LDPE', 'Type: Small & Big Bubble'],
     categoryId: 'cat-15',
     categorySlug: 'air-bubble-pak',
     images: ['/images/products-new/air-bubble-pak-product.jpg', '/images/products-new/bubble-application.jpg'],
     variants: [
-      { code: 'ABP-20300', spec: '20" × 300ft' },
-      { code: 'ABP-40300', spec: '40" × 300ft' },
-      { code: 'ABP-60300', spec: '60" × 300ft' },
+      { code: 'ABP-20300', spec: '20" × 300ft (Small Bubble)' },
+      { code: 'ABP-40300', spec: '40" × 300ft (Small Bubble)' },
+      { code: 'ABP-60300', spec: '60" × 300ft (Small Bubble)' },
+      { code: 'ABP-20164', spec: '20" × 164ft (Big Bubble)' },
+      { code: 'ABP-40164', spec: '40" × 164ft (Big Bubble)' },
     ],
-    isFeatured: false,
-    isActive: true,
-  },
-  {
-    id: 'prod-26',
-    name: 'Air Bubble Pak (Big Bubble)',
-    slug: 'air-bubble-pak-big',
-    description: 'Lightweight cushioning material with air-filled bubbles used to protect fragile items from impact, shock, and scratches during packing and shipping. Large 20mm diameter bubbles for heavy-duty cushioning.',
-    specs: ['Bubble Diameter: 20mm', 'Material: LDPE', 'Type: Big Bubble'],
-    categoryId: 'cat-15',
-    categorySlug: 'air-bubble-pak',
-    images: ['/images/products-new/air-bubble-pak-product.jpg', '/images/products-new/bubble-application.jpg'],
-    variants: [
-      { code: 'ABP-20164', spec: '20" × 164ft' },
-      { code: 'ABP-40164', spec: '40" × 164ft' },
-    ],
-    isFeatured: false,
+    isFeatured: true,
     isActive: true,
   },
 
@@ -469,12 +473,12 @@ export const products: Product[] = [
   // ═══════════════════════════════════════
   {
     id: 'prod-27',
-    name: 'Silica Gel Desiccant',
-    slug: 'silica-gel',
+    name: 'Desiccant',
+    slug: 'desiccant',
     description: 'A moisture-absorbing desiccant used to keep products dry and prevent mold, rust, and damage. Commonly packed in small sachets for packaging, storage, and shipping.',
-    specs: ['Material: Silica Gel (Blue/White)', 'Usage: Moisture absorption', 'Packing: Plastic or Heatlon paper'],
+    specs: ['Type: Blue / White', 'Usage: Moisture absorption', 'Packing: Plastic or Heatlon paper'],
     categoryId: 'cat-16',
-    categorySlug: 'silica-gel',
+    categorySlug: 'desiccant',
     images: ['/images/products-new/silica-gel-product.jpg', '/images/products-new/silica-gel.png'],
     variants: [
       { code: 'Silica-5G PP B/W', spec: '5G — Plastic packing (1500 packs/tin)' },
@@ -508,6 +512,21 @@ export const products: Product[] = [
       { code: 'SB-Y15X9BK', spec: '15mm × 9kg — Black' },
       { code: 'SB-15X9BK', spec: '15mm × 9kg — Black' },
       { code: 'SB-1518(Black)', spec: '15mm × 1.8kg — Black' },
+    ],
+    isFeatured: false,
+    isActive: true,
+  },
+  {
+    id: 'prod-29',
+    name: 'PET Strapping Band (Green Embossed)',
+    slug: 'pet-strapping-band-green',
+    description: 'Heavy-duty polyester (PET) strapping band with embossed surface for superior grip. Ideal for securing heavy pallets, lumber, and industrial loads where high tensile strength is required.',
+    specs: ['Width: 5mm', 'Weight: 20kg', 'Thickness: 0.85mm', 'Material: Polyester (PET)', 'Colour: Green', 'Type: Embossed'],
+    categoryId: 'cat-17',
+    categorySlug: 'strapping-bands',
+    images: ['/images/products-new/strapping-band-product.jpg'],
+    variants: [
+      { code: 'SB-P1552000G-EB', spec: '5mm × 20kg × 0.85mm — Green (Embossed)' },
     ],
     isFeatured: false,
     isActive: true,
@@ -645,6 +664,52 @@ export const products: Product[] = [
     images: ['/images/products-new/mic-pac-product.png'],
     variants: [
       { code: 'MICPAC-STD', spec: 'Standard Mic Pac' },
+    ],
+    isFeatured: false,
+    isActive: true,
+  },
+
+  // ═══════════════════════════════════════
+  //  CARTON BOX (cat-21)
+  // ═══════════════════════════════════════
+  {
+    id: 'prod-38',
+    name: 'Customized Carton Box',
+    slug: 'plain-rsc-carton-box',
+    description: 'Customised RSC (Regular Slotted Container) carton boxes with double-wall construction for maximum strength. Sized to your specifications — ideal for shipping, storage, and general packaging of heavy or fragile items.',
+    specs: ['Material: Double-wall corrugated', 'Type: RSC (Regular Slotted Container)', 'Packing: 10 pcs/pkt'],
+    categoryId: 'cat-21',
+    categorySlug: 'carton-box',
+    images: ['/images/products-new/kraft-tape.png'],
+    variants: [
+      { code: 'CTNB-550400300D/W', spec: '550mm × 400mm × 300mm — Double Wall (10 pcs/pkt)' },
+      { code: 'CTNB-466362382D/W', spec: '466mm × 362mm × 382mm — Double Wall (10 pcs/pkt)' },
+    ],
+    isFeatured: false,
+    isActive: true,
+  },
+
+  // ═══════════════════════════════════════
+  //  STRAPPING TOOLS (cat-17f)
+  // ═══════════════════════════════════════
+  {
+    id: 'prod-39',
+    name: 'Handheld Strapping Tool (Battery Powered)',
+    slug: 'handheld-strapping-tool-v2',
+    description: 'Battery-powered handheld strapping tool for fully automatic tensioning, sealing, and cutting. Lightweight, portable, and suitable for PP and PET strapping bands. Adjustable tension force and welding time with high-strength friction weld sealing.',
+    specs: [
+      'Model: V2',
+      'Type: Battery Powered',
+      'Strap Width: 13–16mm (customisable)',
+      'Strap Material: PP / PET',
+      'Features: Auto tension, seal & cut',
+      'Sealing: High-strength friction weld',
+    ],
+    categoryId: 'cat-17f',
+    categorySlug: 'strapping-tools',
+    images: ['/images/products-new/strapping-tools-1.jpeg'],
+    variants: [
+      { code: 'ST-V2', spec: 'V2 Battery Powered — 13–16mm (PP/PET)' },
     ],
     isFeatured: false,
     isActive: true,

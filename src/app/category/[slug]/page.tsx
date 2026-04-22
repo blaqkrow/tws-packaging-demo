@@ -66,6 +66,9 @@ export default function CategoryPage() {
 
       <section className="section">
         <div className="container">
+          <Link href="/products" className="back-btn">
+            ← Back
+          </Link>
           <div className="section-header">
             <div>
               <h2>{products.length} <span>Product{products.length !== 1 ? 's' : ''}</span></h2>

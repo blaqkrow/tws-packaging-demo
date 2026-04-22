@@ -2,20 +2,20 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
 
 const clientLogos = [
   { src: '/images/clients/samsung.png', alt: 'Samsung' },
   { src: '/images/clients/sony.png', alt: 'Sony' },
   { src: '/images/clients/hewlett-packard.jpg', alt: 'Hewlett Packard' },
-  { src: '/images/clients/maersk.png', alt: 'Maersk' },
+  { src: '/images/clients/maersk.jpg', alt: 'Maersk' },
   { src: '/images/clients/dhl.jpg', alt: 'DHL' },
   { src: '/images/clients/dsv.png', alt: 'DSV' },
   { src: '/images/clients/ceva-logistics.png', alt: 'CEVA Logistics' },
   { src: '/images/clients/gxo.png', alt: 'GXO Logistics' },
-  { src: '/images/clients/db-schenker.png', alt: 'DB Schenker' },
-  { src: '/images/clients/kuehne-nagel.png', alt: 'Kuehne + Nagel' },
+  { src: '/images/clients/db-schenker.jpg', alt: 'DB Schenker' },
+  { src: '/images/clients/kuehne-nagel.jpg', alt: 'Kuehne + Nagel' },
   { src: '/images/clients/ups.jpg', alt: 'UPS' },
+  { src: '/images/clients/fedex.jpg', alt: 'FedEx' },
   { src: '/images/clients/flex.png', alt: 'Flex' },
   { src: '/images/clients/courts.png', alt: 'Courts' },
   { src: '/images/clients/croda.png', alt: 'Croda' },
@@ -23,45 +23,46 @@ const clientLogos = [
   { src: '/images/clients/texas-instruments.png', alt: 'Texas Instruments' },
   { src: '/images/clients/bollore-logistics.png', alt: 'Bolloré Logistics' },
   { src: '/images/clients/best-denki.png', alt: 'Best Denki' },
-  { src: '/images/clients/harvey-norman.png', alt: 'Harvey Norman' },
+  { src: '/images/clients/harvey-norman.jpg', alt: 'Harvey Norman' },
   { src: '/images/clients/expeditors.png', alt: 'Expeditors' },
   { src: '/images/clients/nippon-express.png', alt: 'Nippon Express' },
   { src: '/images/clients/yusen-logistics.png', alt: 'Yusen Logistics' },
   { src: '/images/clients/toll.png', alt: 'Toll' },
 ];
-const expandableSections = [
+const services = [
   {
+    icon: '📋',
     title: 'Packaging & Warehousing Consultation',
-    content: 'Our experienced team provides comprehensive packaging and warehousing consultation services. We assess your current packaging processes, identify areas for improvement, and recommend cost-effective solutions tailored to your specific needs. From material selection to packaging design optimization, we help businesses reduce waste, improve product protection, and streamline their packaging operations.',
+    content: 'Our experienced team provides comprehensive packaging and warehousing consultation services. We assess your current packaging processes, identify areas for improvement, and recommend cost-effective solutions tailored to your specific needs.',
   },
   {
+    icon: '♻️',
     title: 'Sustainability',
-    content: 'Megapac Industries is committed to sustainable packaging practices. We offer eco-friendly alternatives including biodegradable kraft tapes, recyclable materials, and reduced-waste packaging solutions. Our team stays up-to-date with the latest green packaging innovations to help our clients meet their environmental goals while maintaining product integrity and cost-efficiency.',
+    content: 'We offer eco-friendly alternatives including biodegradable kraft tapes, recyclable materials, and reduced-waste packaging solutions to help our clients meet their environmental goals.',
   },
   {
+    icon: '🛡️',
     title: 'Workplace Safety',
-    content: 'As a BizSafe 3 certified company, workplace safety is at the core of our operations. We provide safe-to-use packaging tools and equipment, conduct regular safety assessments, and offer guidance on proper handling of packaging materials. Our products are designed to minimize workplace injuries and comply with Singapore\'s Workplace Safety and Health Act.',
+    content: 'As a BizSafe 3 certified company, workplace safety is at the core of our operations. We provide safe-to-use packaging tools and conduct regular safety assessments.',
   },
   {
+    icon: '🔄',
     title: 'Rental & User Program',
-    content: 'Megapac offers flexible rental and user programs for packaging machinery and equipment. Whether you need strapping machines, stretch wrapping systems, or tape dispensers, our rental program provides access to quality equipment without the upfront capital investment. We include maintenance, training, and technical support as part of the program.',
+    content: 'Flexible rental and user programs for packaging machinery and equipment — access quality equipment without the upfront capital investment, with maintenance and training included.',
   },
   {
+    icon: '⚙️',
     title: 'Automation & Engineering',
-    content: 'We provide end-to-end packaging automation and engineering solutions to help businesses scale their operations. From semi-automatic taping machines to fully automated pallet wrapping systems, we design, install, and maintain packaging production lines that increase throughput, reduce labor costs, and ensure consistent packaging quality.',
+    content: 'End-to-end packaging automation solutions from semi-automatic taping machines to fully automated pallet wrapping systems that increase throughput and reduce labor costs.',
   },
   {
+    icon: '🔧',
     title: 'Spare Parts & Technical Support',
-    content: 'Our dedicated technical support team ensures your packaging machinery operates at peak performance. We stock a comprehensive range of spare parts for all major packaging equipment brands and provide prompt on-site repair services. Our preventive maintenance programs help minimize downtime and extend the lifespan of your equipment.',
+    content: 'Comprehensive spare parts for all major packaging equipment brands with prompt on-site repair services and preventive maintenance programs to minimize downtime.',
   },
 ];
 
 export default function AboutPage() {
-  const [openSection, setOpenSection] = useState<number | null>(null);
-
-  const toggleSection = (index: number) => {
-    setOpenSection(openSection === index ? null : index);
-  };
 
   return (
     <>
@@ -99,11 +100,11 @@ export default function AboutPage() {
             </div>
             <div className="about-page-image">
               <Image
-                src="/images/megapac-logo-new.png"
-                alt="Megapac Industries — Packaging DNA"
-                width={500}
-                height={250}
-                style={{ objectFit: 'contain', maxWidth: '100%', height: 'auto' }}
+                src="/images/warehouse/warehouse-2.jpg"
+                alt="Megapac Industries warehouse overview with palletised stock and mezzanine"
+                width={600}
+                height={400}
+                style={{ objectFit: 'cover', width: '100%', height: '100%', borderRadius: 'var(--radius-xl)' }}
               />
             </div>
           </div>
@@ -190,7 +191,66 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Expandable Sections */}
+      {/* Our Warehouse Gallery */}
+      <section className="section-sm" style={{ background: 'var(--gray-50)' }}>
+        <div className="container">
+          <div className="section-header" style={{ justifyContent: 'center', textAlign: 'center' }}>
+            <div>
+              <h2>Our <span>Warehouse</span></h2>
+              <p>A look inside our operations at 11 Gul Link, Singapore</p>
+            </div>
+          </div>
+          <div className="warehouse-gallery">
+            <div className="warehouse-gallery-item warehouse-gallery-wide">
+              <Image
+                src="/images/warehouse/warehouse-1.jpg"
+                alt="Megapac Industries facility exterior at 11 Gul Link — entrance with pallets and signage"
+                width={900}
+                height={500}
+                style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+              />
+            </div>
+            <div className="warehouse-gallery-item">
+              <Image
+                src="/images/warehouse/warehouse-2.jpg"
+                alt="Megapac warehouse — wide interior view of operations floor with palletised stock"
+                width={600}
+                height={400}
+                style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+              />
+            </div>
+            <div className="warehouse-gallery-item">
+              <Image
+                src="/images/warehouse/warehouse-3.jpg"
+                alt="Megapac warehouse — forklifts loading pallets of packaging materials"
+                width={600}
+                height={400}
+                style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+              />
+            </div>
+            <div className="warehouse-gallery-item">
+              <Image
+                src="/images/warehouse/warehouse-4.jpg"
+                alt="Megapac warehouse — electric pallet stacker and overhead jib crane beside cartons of OPP tape"
+                width={600}
+                height={400}
+                style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+              />
+            </div>
+            <div className="warehouse-gallery-item">
+              <Image
+                src="/images/warehouse/warehouse-5.jpg"
+                alt="Megapac warehouse — stacked returnable pallets and wrapped stock with electric pallet jack"
+                width={600}
+                height={400}
+                style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Services */}
       <section className="section-sm" style={{ background: 'var(--white)' }}>
         <div className="container">
           <div className="section-header" style={{ justifyContent: 'center', textAlign: 'center' }}>
@@ -199,19 +259,13 @@ export default function AboutPage() {
               <p>Comprehensive packaging solutions beyond just products</p>
             </div>
           </div>
-          <div className="expandable-sections">
-            {expandableSections.map((section, index) => (
-              <div key={index} className={`expandable-item ${openSection === index ? 'open' : ''}`}>
-                <button
-                  className="expandable-header"
-                  onClick={() => toggleSection(index)}
-                  aria-expanded={openSection === index}
-                >
-                  <h4>{section.title}</h4>
-                  <span className="expandable-icon">{openSection === index ? '−' : '+'}</span>
-                </button>
-                <div className="expandable-content">
-                  <p>{section.content}</p>
+          <div className="services-grid">
+            {services.map((service, index) => (
+              <div key={index} className="service-card">
+                <div className="service-icon">{service.icon}</div>
+                <div className="service-content">
+                  <h4>{service.title}</h4>
+                  <p>{service.content}</p>
                 </div>
               </div>
             ))}

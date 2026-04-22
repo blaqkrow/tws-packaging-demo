@@ -26,8 +26,8 @@ export default function ProductCard({ product }: Props) {
       </div>
       <div className="product-card-body">
         {category && <div className="product-card-category">{category.name}</div>}
-        <h3>{product.name}</h3>
-        {mainVariant && <div className="product-card-code">{mainVariant.code}</div>}
+        <h3>{product.displayName || product.name}</h3>
+
         <div className="product-card-spec">{mainVariant?.spec || product.specs[0]}</div>
         <span className="btn btn-primary">
           Get a Quote →

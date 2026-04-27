@@ -45,9 +45,17 @@ const services = [
 
 /* Hero carousel images */
 const heroImages = [
-  { src: '/images/hero/hero-1.png', alt: 'Modern packaging warehouse with pallets and forklift' },
   { src: '/images/hero/hero-2.png', alt: 'Professional packaging materials - tape, stretch film, bubble wrap' },
-  { src: '/images/hero/hero-3.png', alt: 'Warehouse worker wrapping pallet with stretch film' },
+  { src: '/images/hero/hero-slide-1.jpeg', alt: 'Megapac packaging operations' },
+  { src: '/images/hero/hero-slide-2.jpeg', alt: 'Megapac packaging operations' },
+  { src: '/images/hero/hero-slide-3.jpeg', alt: 'Megapac packaging operations' },
+  { src: '/images/hero/hero-slide-4.jpeg', alt: 'Megapac packaging operations' },
+  { src: '/images/hero/hero-slide-5.jpeg', alt: 'Megapac packaging operations' },
+  { src: '/images/hero/hero-slide-6.jpeg', alt: 'Megapac packaging operations' },
+  { src: '/images/hero/hero-slide-7.jpeg', alt: 'Megapac packaging operations' },
+  { src: '/images/hero/hero-slide-8.jpeg', alt: 'Megapac packaging operations' },
+  { src: '/images/hero/hero-slide-9.jpeg', alt: 'Megapac packaging operations' },
+  { src: '/images/hero/hero-slide-10.jpeg', alt: 'Megapac packaging operations' },
 ];
 
 
@@ -249,8 +257,14 @@ export default function HomePage() {
               <p>
                 Megapac Industries Pte Ltd is proud to be one of the leading manufacturers and distributors of adhesive tapes, packaging materials and associated machinery in the market. We work with both local and international clients from a wide range of industries.
               </p>
-              <div style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap', marginBottom: 'var(--space-5)', marginTop: 'var(--space-4)' }}>
-                <div className="badge badge-success">✓ BizSafe 3 Certified</div>
+              <div style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap', marginBottom: 'var(--space-5)', marginTop: 'var(--space-4)', alignItems: 'center' }}>
+                <Image
+                  src="/images/bizsafe-3.jpeg"
+                  alt="bizSAFE Level 3 Certified"
+                  width={110}
+                  height={60}
+                  style={{ objectFit: 'contain', height: 40, width: 'auto' }}
+                />
                 <div className="badge badge-info">✓ Local &amp; International Clients</div>
               </div>
               <Link href="/about" className="btn btn-primary">

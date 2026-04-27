@@ -14,7 +14,7 @@ const productGroups = [
   {
     name: 'Tapes',
     description: 'PVC, OPP, masking, cloth, kraft and printed tapes.',
-    image: '/images/products-new/opp-tape-transparent.png',
+    image: '/images/products-new/opp-tape-product.png',
     slugs: ['pvc-tapes', 'opp-tapes', 'printed-tape', 'masking-tape', 'cloth-tape', 'kraft-tape'],
   },
   {
@@ -38,7 +38,7 @@ const productGroups = [
   {
     name: 'Strapping & Tools',
     description: 'PP & PET bands, clips, tensioners, sealers and battery tools.',
-    image: '/images/products-new/strapping-yellow.png',
+    image: '/images/products-new/strapping-tools-display.png',
     slugs: ['strapping-bands', 'j-clip', 'o-clip', 'strapping-tensioner', 'strapping-sealer', 'strapping-tools'],
   },
   {
@@ -56,7 +56,7 @@ const productGroups = [
   {
     name: 'Packing List Envelopes',
     description: 'Self-adhesive packing list envelopes in plain and printed.',
-    image: '/images/products-new/packing-envelope-printed.png',
+    image: '/images/products-new/packing-envelope-group.jpeg',
     slugs: ['packing-list-envelopes'],
   },
   {
@@ -68,7 +68,7 @@ const productGroups = [
   {
     name: 'Customized Carton Box',
     description: 'Plain RSC carton boxes — customised sizes and constructions.',
-    image: '/images/products-new/kraft-tape.png',
+    image: '/images/products-new/carton-box-display.png',
     slugs: ['carton-box'],
   },
   {
@@ -76,6 +76,18 @@ const productGroups = [
     description: 'Loose-fill foam peanuts for void fill and fragile protection.',
     image: '/images/products-new/mic-pac.png',
     slugs: ['mic-pac'],
+  },
+  {
+    name: 'Impact Labels',
+    description: 'SpotSee shock and tilt indicators — Shockwatch, Shockwatch 2, and Tiltwatch XTR.',
+    image: '/images/products-new/impact-shockwatch-label.jpg',
+    slugs: ['impact-labels'],
+  },
+  {
+    name: 'Pallets',
+    description: 'Wooden, plastic, and paper pallets for storage and shipping.',
+    image: '/images/products-new/pallets-display.png',
+    slugs: ['pallets'],
   },
 ];
 

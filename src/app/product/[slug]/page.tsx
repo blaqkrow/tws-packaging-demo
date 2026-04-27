@@ -19,7 +19,7 @@ export default function ProductDetailPage() {
   const [quantity, setQuantity] = useState(5);
   const [selectedImage, setSelectedImage] = useState(0);
   const quantityInputRef = useRef<HTMLInputElement>(null);
-  const hideQuantity = slug === 'customized-printed-opp-tape';
+  const hideQuantity = ['customized-printed-opp-tape', 'diecut-box'].includes(slug);
 
   // Scroll to top when navigating to a new product
   useEffect(() => {

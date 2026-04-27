@@ -167,8 +167,14 @@ export default function AboutPage() {
           </div>
 
           {/* Badges */}
-          <div style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap', justifyContent: 'center', marginBottom: 'var(--space-10)' }}>
-            <div className="badge badge-success" style={{ fontSize: '14px', padding: '8px 20px' }}>✓ BizSafe 3 Certified</div>
+          <div style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', marginBottom: 'var(--space-10)' }}>
+            <Image
+              src="/images/bizsafe-3.jpeg"
+              alt="bizSAFE Level 3 Certified"
+              width={130}
+              height={70}
+              style={{ objectFit: 'contain', height: 48, width: 'auto' }}
+            />
             <div className="badge badge-info" style={{ fontSize: '14px', padding: '8px 20px' }}>✓ Local &amp; International Clients</div>
             <div className="badge badge-info" style={{ fontSize: '14px', padding: '8px 20px' }}>✓ ISO Quality Standards</div>
           </div>
@@ -203,7 +209,7 @@ export default function AboutPage() {
           <div className="warehouse-gallery">
             <div className="warehouse-gallery-item warehouse-gallery-wide">
               <Image
-                src="/images/warehouse/warehouse-1.jpg"
+                src="/images/warehouse/warehouse-main.jpeg"
                 alt="Megapac Industries facility exterior at 11 Gul Link — entrance with pallets and signage"
                 width={900}
                 height={500}

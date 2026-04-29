@@ -117,10 +117,7 @@ export default function QuoteForm({ productName, productVariant, isOpen, onClose
                 />
               </div>
 
-              <div className="form-group">
-                <label>Estimated Quantity</label>
-                <input type="text" name="quantity" placeholder="e.g. 100 rolls, 50 cartons" />
-              </div>
+
 
               <div className="form-group">
                 <label>Additional Notes</label>

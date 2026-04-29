@@ -483,6 +483,27 @@ export const products: Product[] = [
     isFeatured: true,
     isActive: true,
   },
+  {
+    id: 'prod-25-anti-static',
+    name: 'Anti Static Air Bubble Pak',
+    slug: 'anti-static-air-bubble-pak',
+    description: 'Anti-static air bubble pak designed to protect sensitive electronic components from electrostatic discharge and physical impact during storage and transit.',
+    specs: ['Material: Anti-static LDPE', 'Type: Bubble wrap'],
+    categoryId: 'cat-15',
+    categorySlug: 'air-bubble-pak',
+    images: ['/images/products-new/anti-static-air-bubble-pak.jpeg'],
+    variants: [
+      { code: 'ASABP-20164', spec: '20" × 164ft' },
+      { code: 'ASABP-20300', spec: '20" × 300ft' },
+      { code: 'ASABP-40164', spec: '40" × 164ft' },
+      { code: 'ASABP-40300', spec: '40" × 300ft' },
+      { code: 'ASABP-60164', spec: '60" × 164ft' },
+      { code: 'ASABP-60300', spec: '60" × 300ft' },
+    ],
+    isFeatured: false,
+    isActive: true,
+  },
+
 
   // ═══════════════════════════════════════
   //  SILICA GEL (cat-16)

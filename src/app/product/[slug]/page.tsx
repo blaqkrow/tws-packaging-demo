@@ -3,7 +3,7 @@
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useMemo, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { getProductBySlug, getProductsByCategory } from '@/data/products';
 import { categories } from '@/data/categories';
 import ProductCard from '@/components/ProductCard';
@@ -16,10 +16,7 @@ export default function ProductDetailPage() {
   const product = getProductBySlug(slug);
   const [quoteOpen, setQuoteOpen] = useState(false);
   const [selectedVariant, setSelectedVariant] = useState(0);
-  const [quantity, setQuantity] = useState(5);
   const [selectedImage, setSelectedImage] = useState(0);
-  const quantityInputRef = useRef<HTMLInputElement>(null);
-  const hideQuantity = ['customized-printed-opp-tape', 'diecut-box'].includes(slug);
 
   // Scroll to top when navigating to a new product
   useEffect(() => {
@@ -156,43 +153,7 @@ export default function ProductDetailPage() {
 
 
 
-                {/* Estimated Quantity */}
-                {!hideQuantity && (
-                  <div className="config-section">
-                    <label>Estimated Quantity</label>
-                    <div className="config-quantity">
-                      <input
-                        ref={quantityInputRef}
-                        type="number"
-                        min={1}
-                        value={quantity}
-                        onChange={(e) => setQuantity(Number(e.target.value))}
-                      />
-                      <div className="config-quantity-presets">
-                        <button
-                          className="config-quantity-preset"
-                          onClick={() => {
-                            setQuantity(0);
-                            quantityInputRef.current?.focus();
-                          }}
-                          style={![5, 10, 15, 20].includes(quantity) ? { borderColor: 'var(--blue-500)', color: 'var(--blue-700)', background: 'var(--blue-50)' } : {}}
-                        >
-                          Custom
-                        </button>
-                        {[5, 10, 15, 20].map((q) => (
-                          <button
-                            key={q}
-                            className="config-quantity-preset"
-                            onClick={() => setQuantity(q)}
-                            style={quantity === q ? { borderColor: 'var(--blue-500)', color: 'var(--blue-700)', background: 'var(--blue-50)' } : {}}
-                          >
-                            {q}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                )}
+
               </div>
 
               {/* Specs */}
@@ -208,7 +169,7 @@ export default function ProductDetailPage() {
                   Get Quote
                 </button>
                 <a
-                  href={`https://wa.me/6590482345?text=Hi%20Megapac%2C%20I%27m%20interested%20in%20${encodeURIComponent(product.name)}%20(${encodeURIComponent(currentVariant?.spec || '')})${hideQuantity ? '' : `%20x${quantity}`}.`}
+                  href={`https://wa.me/6590482345?text=Hi%20Megapac%2C%20I%27m%20interested%20in%20${encodeURIComponent(product.name)}%20(${encodeURIComponent(currentVariant?.spec || '')}).`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-lg"

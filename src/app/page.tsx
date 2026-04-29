@@ -272,7 +272,7 @@ export default function HomePage() {
               </Link>
             </div>
             <div style={{ borderRadius: 'var(--radius-xl)', overflow: 'hidden' }}>
-              <Image src="/images/warehouse/warehouse-1.jpg" alt="Megapac Industries warehouse" width={600} height={400} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
+              <Image src="/images/warehouse/warehouse-home.jpeg" alt="Megapac Industries warehouse" width={600} height={400} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
             </div>
           </div>
         </div>

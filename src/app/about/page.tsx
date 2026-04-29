@@ -218,7 +218,7 @@ export default function AboutPage() {
             </div>
             <div className="warehouse-gallery-item">
               <Image
-                src="/images/warehouse/warehouse-2.jpg"
+                src="/images/warehouse/warehouse-2-new.jpeg"
                 alt="Megapac warehouse — wide interior view of operations floor with palletised stock"
                 width={600}
                 height={400}
